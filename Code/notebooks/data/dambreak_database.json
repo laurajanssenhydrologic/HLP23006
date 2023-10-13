@@ -1,0 +1,38 @@
+{
+    "test1": {
+        "xCoordinates": "108979.1337823624 109416.15887880792", 
+        "yCoordinates": "435419.48272509914 433984.5579657208", 
+        "startLocationX": "109197.9809",
+        "startLocationY": "434702.1157",
+        "waterLevelDownstreamLocationX": "109164.77299999818",
+        "waterLevelDownstreamLocationY": "435639.9690000005",
+        "waterLevelUpstreamNodeId": "102828.214338_433732.462321"
+        },
+    "test4": {
+        "xCoordinates": "105180.70213595919 105438.70492741487", 
+        "yCoordinates": "433197.1908588133 434674.8357957318", 
+        "startLocationX": "105294.6061",
+        "startLocationY": "433938.6494",
+        "waterLevelDownstreamLocationX": "105164.77299999818",
+        "waterLevelDownstreamLocationY": "434639.9690000005",
+        "waterLevelUpstreamNodeId": "102828.214338_433732.462321"
+        },
+    "test9": {
+        "xCoordinates": "110285.11228979738 110593.13499187054", 
+        "yCoordinates": "436198.89107870497 434730.85769522644", 
+        "startLocationX": "110432.6329",
+        "startLocationY": "435463.5125",
+        "waterLevelDownstreamLocationX": "110164.77299999818",
+        "waterLevelDownstreamLocationY": "436139.9690000005",
+        "waterLevelUpstreamNodeId": "102828.214338_433732.462321"
+        },
+    "test10": {
+        "xCoordinates": "103278.34685413516 104344.65983664396", 
+        "yCoordinates": "441073.2397343932 442128.21680681384", 
+        "startLocationX": "103815.7146",
+        "startLocationY": "441596.6324",
+        "waterLevelDownstreamLocationX": "105164.77299999818",
+        "waterLevelDownstreamLocationY": "441639.9690000005",
+        "waterLevelUpstreamNodeId": "97739.000000_435536.000000"
+        }
+    }

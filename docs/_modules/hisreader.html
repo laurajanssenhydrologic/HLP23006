@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hisreader &#8212; D-HydroLogic</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/hisreader';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    D-HydroLogic
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../roi_toolbox/intro.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../roi_toolbox/SAS_run_model.html">ROI Stand Alone Service</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../roi_toolbox/SAS_build_model.html">ROI Modelbouw</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../inundation_toolbox/intro.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/hisreader_usage.html">Reading structure time-series from a his-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/clm_example_tol.html">Analyzing arrival time and maximum rising speed by reading a clm-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/fou_example_tol.html">Reading maximum waterdepth from a fou-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/map_example_tol.html">Reading time-varying waterdepth from a map-file</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/data_structures_api.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">Dhydro Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_data_api.html">HYDAMO Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/flowmeshreader_api.html">Flowmeshreader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hisreader_api.html">Hisreader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/inundationtoolbox_api.html">Inundation toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/plotting_api.html">Plotting</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/HydroLogicBV/D-HYDROLOGIC">D-HYDROLOGIC GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Deltares/HYDROLIB-core">HYDROLIB-CORE GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Deltares/HYDROLIB">HYDROLIB GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://deltares.github.io/HYDROLIB-core/0.5.2/">HYDROLIB-CORE Documentation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2F_modules/hisreader.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for hisreader</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Fri May 13th 2022</span>
+
+<span class="sd">@author: Koen Reef Hydrologic</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># Import</span>
+<span class="c1"># =============================================================================</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span> <span class="nn">plotting</span> <span class="kn">import</span> <span class="n">default_plot</span>
+
+<span class="n">PandasDataFrame</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;pandas.core.frame.DataFrame&quot;</span><span class="p">)</span>
+<span class="n">STRUCTURE_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;station&quot;</span><span class="p">,</span> <span class="s2">&quot;weirgen&quot;</span><span class="p">]</span>
+
+<span class="sd">&quot;&quot;&quot;============================================================================</span>
+<span class="sd">Provides</span>
+<span class="sd">    1. Creates an object to convert variables from the his netcdf output files</span>
+<span class="sd">    from the D-Hydro model (...his.nc) into python objects</span>
+<span class="sd">    Use: HisResults(inputdir, outputdir)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputdir : absolute windows directory path to the ...his.nc D-Hydro output file</span>
+<span class="sd">        outputdir  : absolute windows directory path to the location newly</span>
+<span class="sd">        created csv files</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        HisResults object with lists of objects retrieved from his file</span>
+<span class="sd">===========================================================================&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">ExtStructure</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extends the Hydrolib structure datamodel by adding fields for simulated and measured DataFrames.</span>
+<span class="sd">    Also adds basic plots for quick data inspection.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (str): Name, or identifier of the structure</span>
+<span class="sd">        xcoordinate (float): x-coordinate of structure</span>
+<span class="sd">        ycoordinate (float): y-coordinate of structure</span>
+<span class="sd">        simulated (pd.DataFrame): simulated time-series in a dataframe</span>
+<span class="sd">        measured (pd.DataFrame): measured time-series in a dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">xcoordinate</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">ycoordinate</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">simulated</span><span class="p">:</span> <span class="n">PandasDataFrame</span>
+    <span class="n">measured</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PandasDataFrame</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">simulated_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Function to plot the simulated value of &#39;variable&#39;&quot;&quot;&quot;</span>
+        <span class="n">default_plot</span><span class="p">(</span><span class="n">dfs</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">simulated</span><span class="p">],</span> <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">measured_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;function to plot the measured value of &#39;variable&#39;&quot;&quot;&quot;</span>
+        <span class="n">default_plot</span><span class="p">(</span><span class="n">dfs</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">measured</span><span class="p">],</span> <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">measured_vs_simulated_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;function to plot the simulated and measured value of &#39;variable&#39;&quot;&quot;&quot;</span>
+        <span class="n">default_plot</span><span class="p">(</span>
+            <span class="n">dfs</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">simulated</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">measured</span><span class="p">],</span>
+            <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Simulated &quot;</span> <span class="o">+</span> <span class="n">variable</span><span class="p">,</span> <span class="s2">&quot;Measured &quot;</span> <span class="o">+</span> <span class="n">variable</span><span class="p">],</span>
+        <span class="p">)</span>
+
+
+<div class="viewcode-block" id="HisResults"><a class="viewcode-back" href="../api-ref/hisreader_api.html#hisreader.HisResults">[docs]</a><span class="k">class</span> <span class="nc">HisResults</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to read results from a D-HYDRO _his.nc file.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        __inputdir (str): directory where input file is located</span>
+<span class="sd">        __outputdir (str): directory where output (e.g. csv files) are stored</span>
+<span class="sd">        structure_types (List): list of structures to load from input file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">outputdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">structure_types</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># TODO: let user choose what to execute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__inputdir</span> <span class="o">=</span> <span class="n">inputdir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__outputdir</span> <span class="o">=</span> <span class="n">outputdir</span>
+        <span class="k">if</span> <span class="n">structure_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">structure_types</span> <span class="o">=</span> <span class="n">STRUCTURE_TYPES</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_structures</span><span class="p">(</span><span class="n">structure_types</span><span class="p">,</span> <span class="n">ExtStructure</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__read_netcdf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Reads the NetCDF file and stores it in __ds attribute.</span>
+<span class="sd">        Variables are stored in self.variables&quot;&quot;&quot;</span>
+        <span class="n">fnin</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__inputdir</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*his.nc&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">fnin</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span>
+
+<div class="viewcode-block" id="HisResults.read_all_netcdf_variables"><a class="viewcode-back" href="../api-ref/hisreader_api.html#hisreader.HisResults.read_all_netcdf_variables">[docs]</a>    <span class="k">def</span> <span class="nf">read_all_netcdf_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;User function to create handles for all variables of the NetCDF file</span>
+<span class="sd">        self.variable corresponds to self.__ds.variables[variable]&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;_id&quot;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">chartostring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span> <span class="p">:])))</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">key</span><span class="p">])</span></div>
+
+    <span class="k">def</span> <span class="nf">__make_timeframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets the starting time and creates a dataframe containing the model timeframe as index</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t_start</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;since &quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+00:00&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="n">start_moment</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">t_start</span><span class="p">)</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">][:])</span> <span class="o">*</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">start_moment</span>
+        <span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">time_array</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeframe</span> <span class="o">=</span> <span class="n">df</span>
+
+<div class="viewcode-block" id="HisResults.parse_structures"><a class="viewcode-back" href="../api-ref/hisreader_api.html#hisreader.HisResults.parse_structures">[docs]</a>    <span class="k">def</span> <span class="nf">parse_structures</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">structure_types</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">structure_obj</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ExtStructure</span><span class="p">],</span>
+        <span class="n">structure_names_lists</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;General function to parse structures from His files. returns an object in self for all structures of</span>
+<span class="sd">        structure_type and adds their names to a list for convenience.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            structure_types (List): list containing the structure types that are to be read from the model results</span>
+<span class="sd">            structure_obj (ExtStructure): object used to organize the results per structure</span>
+<span class="sd">            structure_names_lists (List): list containing exactly one list per structure type.</span>
+<span class="sd">                                          These lists contain the structure names to be loaded.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            structure_list (List): list containing a list per structure type with the loaded structures per type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check if netcdf is loaded, if not do so</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;__ds&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__read_netcdf</span><span class="p">()</span>
+
+        <span class="c1"># Check if timeframe exists, if not make it</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;timeframe&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__make_timeframe</span><span class="p">()</span>
+
+        <span class="n">structure_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">s_ix</span><span class="p">,</span> <span class="n">structure_type</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">structure_types</span><span class="p">):</span>
+
+            <span class="c1"># Firstly, load structure names from stored netcdf data, if not provide as input</span>
+            <span class="k">if</span> <span class="n">structure_names_lists</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">structure_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="n">nc</span><span class="o">.</span><span class="n">chartostring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">structure_type</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_id&quot;</span><span class="p">][:,</span> <span class="p">:])</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">structure_names</span> <span class="o">=</span> <span class="n">structure_names_lists</span><span class="p">[</span><span class="n">s_ix</span><span class="p">]</span>
+            <span class="c1"># Secondly, loop over structure names and create object with simulated values from model results</span>
+            <span class="c1"># and initiate an empty dataframe for measured values.</span>
+            <span class="n">structure_list</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+            <span class="k">for</span> <span class="n">struct_ix</span><span class="p">,</span> <span class="n">struct_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">structure_names</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeframe</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">struct_name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">],</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">):</span>
+                        <span class="k">continue</span>
+
+                    <span class="k">if</span> <span class="n">variable</span> <span class="o">==</span> <span class="s2">&quot;bedlevel&quot;</span><span class="p">:</span>
+                        <span class="c1"># does not work</span>
+                        <span class="k">continue</span>
+
+                    <span class="k">if</span> <span class="n">structure_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">coordinates</span><span class="p">:</span>
+                        <span class="n">data</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">][:,</span> <span class="n">struct_ix</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">xcoordinate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">structure_type</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_geom_node_coordx&quot;</span><span class="p">][</span>
+                        <span class="n">struct_ix</span>
+                    <span class="p">]</span>
+                    <span class="n">ycoordinate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">structure_type</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_geom_node_coordy&quot;</span><span class="p">][</span>
+                        <span class="n">struct_ix</span>
+                    <span class="p">]</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">xcoordinate</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999</span>
+                    <span class="n">ycoordinate</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999</span>
+
+                <span class="n">structure</span> <span class="o">=</span> <span class="n">structure_obj</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">xcoordinate</span><span class="o">=</span><span class="n">xcoordinate</span><span class="p">,</span>
+                    <span class="n">ycoordinate</span><span class="o">=</span><span class="n">ycoordinate</span><span class="p">,</span>
+                    <span class="n">measured</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                    <span class="n">simulated</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">structure</span><span class="p">)</span>
+                <span class="n">structure_list</span><span class="p">[</span><span class="n">s_ix</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ds</span>
+        <span class="k">return</span> <span class="n">structure_list</span></div>
+
+<div class="viewcode-block" id="HisResults.write_csv"><a class="viewcode-back" href="../api-ref/hisreader_api.html#hisreader.HisResults.write_csv">[docs]</a>    <span class="k">def</span> <span class="nf">write_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">struct_list</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Writes csvs in output_path for all structures in struct_list,</span>
+<span class="sd">        or for all structures that have been parsed.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            output_path (str): the output path to which the csvs are written</span>
+<span class="sd">            struct_list (List): list containing the names of the structures to be written to files</span>
+<span class="sd">                                if struct_list is not provided, all structures are written to files</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">output_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__outputdir</span>
+
+        <span class="k">if</span> <span class="n">struct_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">struct_name</span> <span class="ow">in</span> <span class="n">struct_list</span><span class="p">:</span>
+                <span class="n">structure</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">struct_name</span><span class="p">)</span>
+                <span class="n">structure</span><span class="o">.</span><span class="n">simulated</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">struct_name</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_simulated.csv&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">measured</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">structure</span><span class="o">.</span><span class="n">measured</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">struct_name</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_measured.csv&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="s2">&quot;simulated&quot;</span><span class="p">):</span>
+                    <span class="n">structure</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+                    <span class="n">structure</span><span class="o">.</span><span class="n">simulated</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_simulated.csv&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">measured</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">structure</span><span class="o">.</span><span class="n">measured</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_measured.csv&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By KRG Reef
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

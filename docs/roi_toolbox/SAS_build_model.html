@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>ROI Modelbouw &#8212; D-HydroLogic</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'roi_toolbox/SAS_build_model';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Inundation Toolbox" href="../inundation_toolbox/intro.html" />
+    <link rel="prev" title="ROI Stand Alone Service" href="SAS_run_model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    D-HydroLogic
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">ROI Toolbox</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SAS_run_model.html">ROI Stand Alone Service</a></li>
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ROI Modelbouw</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../inundation_toolbox/intro.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/hisreader_usage.html">Reading structure time-series from a his-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/clm_example_tol.html">Analyzing arrival time and maximum rising speed by reading a clm-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/fou_example_tol.html">Reading maximum waterdepth from a fou-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/map_example_tol.html">Reading time-varying waterdepth from a map-file</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/data_structures_api.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">Dhydro Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_data_api.html">HYDAMO Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/flowmeshreader_api.html">Flowmeshreader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hisreader_api.html">Hisreader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/inundationtoolbox_api.html">Inundation toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/plotting_api.html">Plotting</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/HydroLogicBV/D-HYDROLOGIC">D-HYDROLOGIC GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Deltares/HYDROLIB-core">HYDROLIB-CORE GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Deltares/HYDROLIB">HYDROLIB GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://deltares.github.io/HYDROLIB-core/0.5.2/">HYDROLIB-CORE Documentation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2Froi_toolbox/SAS_build_model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/roi_toolbox/SAS_build_model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ROI Modelbouw</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ROI Modelbouw</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">0. Imports</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#input">1. Input</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opties-voor-modelbouw">Opties voor modelbouw</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-geopackage-database">2. Build geopackage database</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-geopackage">3. Load geopackage</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-model">4. Build model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-op-als-je-iets-hebt-aangepast-in-deze-bestanden-verwijzingen-of-instellingen-is-het-noodzakelijk-om-de-jupyter-notebook-opnieuw-op-te-starten-na-het-definieren-van-je-paden-en-verwijzingen-kun-je-direct-naar-deze-cel-om-het-model-op-te-bouwen-uit-het-gecombineerde-geopackage">Let op: als je iets hebt aangepast in deze bestanden (verwijzingen of instellingen) is het noodzakelijk om de Jupyter Notebook opnieuw op te starten. Na het definiëren van je paden en verwijzingen kun je direct naar deze cel om het model op te bouwen uit het gecombineerde geopackage.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einde-modelbouw">Einde modelbouw</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="roi-modelbouw">
+<h1>ROI Modelbouw<a class="headerlink" href="#roi-modelbouw" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="imports">
+<h1>0. Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># voeg hier de locatie van de ROI code toe:</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;C:\Werk\Projecten\P1414_ROI\Cursus\StandAloneServiceZipfile\Code&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">data_structures.dhydro_data</span> <span class="kn">import</span> <span class="n">DHydroData</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="input">
+<h1>1. Input<a class="headerlink" href="#input" title="Permalink to this heading">#</a></h1>
+<p>De eerste stap in het opbouwen van het model is het selecteren van de juiste geodata. Deze geodata, per dataset gebundeld in één geopackage (gpkg) vormt de basis van je model. Het op deze manier selecteren van de geodata laat de gebruiker de mogelijkheid om bepaalde geodata niet mee te nemen in het model. In de huidige versie van het ROI zijn alleen gecombineerde modellen getest, waardoor fouten in modellen gebaseerd op subsets van de data niet zijn uitgesloten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># voeg hier de locatie van de input data toe:</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Werk\Projecten\P1414_ROI\Cursus&quot;</span>
+
+<span class="c1"># voeg hier de locatie toe voor de output van je DHYDRO model:</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Werk\Projecten\P1414_ROI\Cursus\OutputModellen&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="opties-voor-modelbouw">
+<h2>Opties voor modelbouw<a class="headerlink" href="#opties-voor-modelbouw" title="Permalink to this heading">#</a></h2>
+<p>Voor het bouwen van een model zijn er in het ROI drie opties:</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Vanuit de leggerdata</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Vanuit de afzonderlijke geopackages</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Vanuit een gecombineerd compleet geopackage</p></li>
+</ol>
+</li>
+</ul>
+<p>Optie 2 en 3 zijn het gemakkelijkst en het snelst. In onderstaand codeblok kun je selecteren welke acties je wil uitvoeren.</p>
+<p><strong>build_database</strong>: het opbouwen van een gecombineerde geopackage vanuit de leggerdata per afzonderlijke geodata set<br />
+<strong>load_gpkgs</strong>: het inladen van bestaande geopackages en deze combineren tot een gecombineerde geopackage<br />
+<strong>build_model</strong>: het bouwen van het DHYDRO model op basis van het gecombineerd geopackage</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selecteer hier welke acties je wil uitvoeren:</span>
+<span class="n">build_database</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">load_gpkgs</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">build_model</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecteer hier het gewenste gecombineerde geopackage (of geef de locatie van de nieuw te creëren geopackage):</span>
+<span class="n">gpkg_file</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\Combined_cursus_ROI.gpkg&quot;</span>
+
+<span class="c1"># Of selecteer welke datasets gecombineerd worden in een nieuwe geopackage met bovenstaande naam</span>
+<span class="n">gpkgs_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">folder</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\HHSK.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\HDSR.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\HHD.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\HHR.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\WAGV.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\ARKNZK.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\Rijntakken.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\RMM_closed.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\noordzee_hoog.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\markermeer.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\tunnels.gpkg&quot;</span><span class="p">,</span>
+    <span class="n">folder</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\GIS\HYDAMO\Ontbrekende_stuwen.gpkg&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>De omzetting van leggerdata naar een HyDAMO compatible geopackage gebeurt aan de hand van config bestanden. In deze bestanden staan de paden naar de juiste databestanden vermeld. Daarnaast worden per dataset afzonderlijk de bestaande attributen gematcht aan de voor HyDAMO benodige attributen.</p>
+<p><strong>NB: het werken met al deze config bestanden vereist een grote hoeveelheid aan dataverwijzingen die dienen te worden aangepast. Voor de cursus wordt niet aangeraden om op basis van deze config bestanden een model op te bouwen omwille van deze aanpassingen en de lange doorrekentijd.</strong></p>
+<p>Naast de config bestanden voor de afzonderlijke datasets is de <em>config_dhydro</em> van belang. Hierin worden de juiste databestanden voor de opbouw van een 2D grid gespecificeerd (AHN, ruwheid, de extent van het grid) en kunnen een aantal DHYDRO specificaties worden opgegeven.</p>
+<p>In het config bestand <em>defaults</em> worden alle default waarden gespecificeerd voor het geval de leggerdata daar niet in voorziet. Al deze config bestanden kunnen in code editors of tekst editors (Notepad++, kladblok, etc.) aangepast worden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lijst met config bestanden</span>
+<span class="n">config_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s2">&quot;hhsk_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;hdsr_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;hhd_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;hhr_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;wagv_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;ark_nzk_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;rijntakken_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;rijnmaasmonding__closed_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;noordzee_hoog_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;markermeer_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;tunnels_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;underpass_config&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;ontbrekende_stuwen_config&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Lijst met snap afstanden, van belang voor het aan elkaar koppelen van verschillende databronnen.</span>
+<span class="n">snap_dist_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Naam van DHYDRO config</span>
+<span class="n">config_dhydro</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;combined_HHD_config&quot;</span>
+<span class="n">defaults</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;defaults&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="build-geopackage-database">
+<h1>2. Build geopackage database<a class="headerlink" href="#build-geopackage-database" title="Permalink to this heading">#</a></h1>
+<p>Onderstaand wordt op basis van de verschillende config bestanden een gecombineerde geopackage gecreërd. <strong>Voor deze cursus wordt aangeraden dit deel over te slaan.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">build_database</span><span class="p">:</span>
+    <span class="n">dhd</span> <span class="o">=</span> <span class="n">DHydroData</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">config_list</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">)</span>
+
+        <span class="n">dhd</span><span class="o">.</span><span class="n">hydamo_from_raw_data</span><span class="p">(</span>
+            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">branch_snap_dist</span><span class="o">=</span><span class="n">snap_dist_list</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dhd</span><span class="o">.</span><span class="n">fixed_weirs_from_raw_data</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="n">dhd</span><span class="o">.</span><span class="n">clip_structures_by_branches</span><span class="p">()</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">fixed_weirs_from_raw_data</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="s2">&quot;wegen_config&quot;</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">)</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">fixed_weirs_from_raw_data</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="s2">&quot;relief_config&quot;</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">)</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">fixed_weirs_from_raw_data</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="s2">&quot;noordzeekeringen_config&quot;</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">)</span>
+    
+    <span class="n">dhd</span><span class="o">.</span><span class="n">hydamo_to_gpkg</span><span class="p">(</span><span class="n">output_gpkg</span><span class="o">=</span><span class="n">gpkg_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="load-geopackage">
+<h1>3. Load geopackage<a class="headerlink" href="#load-geopackage" title="Permalink to this heading">#</a></h1>
+<p>Onderstaand wordt een gecombineerde geopackage gecreërd op basis van reeds bestaande geopackages, zoals gespecificeerd in gpks_list. Om dit geopackage te creëren, dienen de paden naar de juiste databestanden in de laatste drie config bestanden nog worden aangepast: wegen_config, relief_config en noordzeekeringen_config.</p>
+<p><strong>Open deze config bestanden in de editor naar keuze en pas de paden aan naar de juiste locatie op je computer. Herstart vervolgens dit Jupyter Notebook om de aanpassingen in te laden (Kernel -&gt; Restart &amp; Clear Output).</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">load_gpkgs</span><span class="p">:</span>
+    <span class="n">dhd</span> <span class="o">=</span> <span class="n">DHydroData</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">gpkg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gpkgs_list</span><span class="p">):</span>
+
+        <span class="c1"># load data</span>
+        <span class="n">dhd</span><span class="o">.</span><span class="n">hydamo_from_gpkg</span><span class="p">(</span><span class="n">gpkg</span><span class="p">,</span> <span class="n">branch_snap_dist</span><span class="o">=</span><span class="n">snap_dist_list</span><span class="p">[</span><span class="n">ix</span><span class="p">])</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">gpkg</span> <span class="o">+</span> <span class="s1">&#39; loaded.&#39;</span><span class="p">)</span>
+        
+<span class="c1">#     dhd.fixed_weirs_from_raw_data(config=&quot;wegen_config&quot;, defaults=defaults)</span>
+<span class="c1">#     dhd.fixed_weirs_from_raw_data(config=&quot;relief_config&quot;, defaults=defaults)</span>
+<span class="c1">#     dhd.fixed_weirs_from_raw_data(config=&quot;noordzeekeringen_config&quot;, defaults=defaults)</span>
+    
+    <span class="n">dhd</span><span class="o">.</span><span class="n">hydamo_to_gpkg</span><span class="p">(</span><span class="n">output_gpkg</span><span class="o">=</span><span class="n">gpkg_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Combined geopackage created: &#39;</span><span class="o">+</span><span class="n">gpkg_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\HHSK.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\HDSR.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\HHD.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\HHR.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\WAGV.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\ARKNZK.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\Rijntakken.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\RMM_closed.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\noordzee_hoog.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\markermeer.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\tunnels.gpkg loaded.
+
+C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\Ontbrekende_stuwen.gpkg loaded.
+Combined geopackage created: C:\Werk\Projecten\P1414_ROI\Cursus\GIS\HYDAMO\Combined_cursus_ROI.gpkg
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="build-model">
+<h1>4. Build model<a class="headerlink" href="#build-model" title="Permalink to this heading">#</a></h1>
+<p>Onderstaand wordt het model opgebouwd op basis van de gecombineerde geopackage. Hierin worden ook de settings uit <em>config_dhydro</em> gebruikt. In dit bestand worden ook randvoorwaarde en een dijkdoorbraak gespecificeerd. Dit kan bij het doorrekenen van het model met de SAS_run_model nog worden aangepast.</p>
+<p><strong>Pas de volgende padverwijzingen aan in config_dhydro om het model juist te kunnen runnen:</strong></p>
+<ul class="simple">
+<li><p>elevation_raster_path</p></li>
+<li><p>extent_path</p></li>
+<li><p>initial_peil_raster_path</p></li>
+<li><p>roughness_2d_raster_path</p></li>
+<li><p>dambreak_path (in class DamBreak)</p></li>
+</ul>
+<p>Voor de cursus wordt aangeraden om, mocht dat gewenst zijn, de gridgrootte van het 2D grid te veranderen (dx en dy in class Models.two_d). Deze aanpassingen zijn getest tijdens ontwikkeling van het ROI. Het config_dhydro bestand maakt het eenvoudig om ook de extent van het 2D grid (voor regionale modellering) aan te passen, maar dat is in deze fase van het ROI nog niet uitvoerig getest.</p>
+<p>Bij het aanpassen van het 2D grid: het genereren van een gedetailleerd grid duurt lang en resulteert in lange rekentijden.</p>
+<section id="let-op-als-je-iets-hebt-aangepast-in-deze-bestanden-verwijzingen-of-instellingen-is-het-noodzakelijk-om-de-jupyter-notebook-opnieuw-op-te-starten-na-het-definieren-van-je-paden-en-verwijzingen-kun-je-direct-naar-deze-cel-om-het-model-op-te-bouwen-uit-het-gecombineerde-geopackage">
+<h2>Let op: als je iets hebt aangepast in deze bestanden (verwijzingen of instellingen) is het noodzakelijk om de Jupyter Notebook opnieuw op te starten. Na het definiëren van je paden en verwijzingen kun je direct naar deze cel om het model op te bouwen uit het gecombineerde geopackage.<a class="headerlink" href="#let-op-als-je-iets-hebt-aangepast-in-deze-bestanden-verwijzingen-of-instellingen-is-het-noodzakelijk-om-de-jupyter-notebook-opnieuw-op-te-starten-na-het-definieren-van-je-paden-en-verwijzingen-kun-je-direct-naar-deze-cel-om-het-model-op-te-bouwen-uit-het-gecombineerde-geopackage" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">build_model</span><span class="p">:</span>
+    <span class="c1"># 1. initialize an instance of DHydamoData</span>
+    <span class="n">dhd</span> <span class="o">=</span> <span class="n">DHydroData</span><span class="p">()</span>
+
+    <span class="c1"># 2. load data</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">hydamo_from_gpkg</span><span class="p">(</span><span class="n">gpkg_file</span><span class="p">)</span>
+
+    <span class="c1"># Huidige versie: verwijder bruggen omdat er nog geen brugprofielen beschikbaar zijn</span>
+    <span class="k">del</span> <span class="n">dhd</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">brug</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;brug&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Voor overstromingsmodel: zet pompcapaciteit op 0 (alleen kerend)</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">pomp</span><span class="p">[</span><span class="s2">&quot;maximalecapaciteit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># 3. save as dhydro model</span>
+    <span class="n">dhd</span><span class="o">.</span><span class="n">to_dhydro</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config_dhydro</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="n">output_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="einde-modelbouw">
+<h2>Einde modelbouw<a class="headerlink" href="#einde-modelbouw" title="Permalink to this heading">#</a></h2>
+<p>Met deze laatste stap is de modelbouw afgerond. Kopiëer het model naar de Model_database folder om het met de SAS_run_model door te kunnen rekenen.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./roi_toolbox"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="SAS_run_model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ROI Stand Alone Service</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../inundation_toolbox/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Inundation Toolbox</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ROI Modelbouw</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">0. Imports</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#input">1. Input</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opties-voor-modelbouw">Opties voor modelbouw</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-geopackage-database">2. Build geopackage database</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-geopackage">3. Load geopackage</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-model">4. Build model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-op-als-je-iets-hebt-aangepast-in-deze-bestanden-verwijzingen-of-instellingen-is-het-noodzakelijk-om-de-jupyter-notebook-opnieuw-op-te-starten-na-het-definieren-van-je-paden-en-verwijzingen-kun-je-direct-naar-deze-cel-om-het-model-op-te-bouwen-uit-het-gecombineerde-geopackage">Let op: als je iets hebt aangepast in deze bestanden (verwijzingen of instellingen) is het noodzakelijk om de Jupyter Notebook opnieuw op te starten. Na het definiëren van je paden en verwijzingen kun je direct naar deze cel om het model op te bouwen uit het gecombineerde geopackage.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einde-modelbouw">Einde modelbouw</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By KRG Reef
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

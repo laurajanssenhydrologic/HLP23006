@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dhydro_data &#8212; D-HydroLogic</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/dhydro_data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    D-HydroLogic
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../roi_toolbox/intro.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../roi_toolbox/SAS_run_model.html">ROI Stand Alone Service</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../roi_toolbox/SAS_build_model.html">ROI Modelbouw</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../inundation_toolbox/intro.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/hisreader_usage.html">Reading structure time-series from a his-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/clm_example_tol.html">Analyzing arrival time and maximum rising speed by reading a clm-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/fou_example_tol.html">Reading maximum waterdepth from a fou-file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inundation_toolbox/map_example_tol.html">Reading time-varying waterdepth from a map-file</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/data_structures_api.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">Dhydro Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_data_api.html">HYDAMO Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/flowmeshreader_api.html">Flowmeshreader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/hisreader_api.html">Hisreader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/inundationtoolbox_api.html">Inundation toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/plotting_api.html">Plotting</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/HydroLogicBV/D-HYDROLOGIC">D-HYDROLOGIC GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Deltares/HYDROLIB-core">HYDROLIB-CORE GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Deltares/HYDROLIB">HYDROLIB GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://deltares.github.io/HYDROLIB-core/0.5.2/">HYDROLIB-CORE Documentation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2F_modules/dhydro_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for dhydro_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">importlib</span>
+
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">geo_tools.clip_tools</span> <span class="kn">import</span> <span class="n">_clip_structures_by_branches</span>
+<span class="kn">from</span> <span class="nn">geo_tools.merge_networks</span> <span class="kn">import</span> <span class="n">merge_networks</span>
+
+<span class="kn">from</span> <span class="nn">data_structures.fixedweirs_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">create_dambreak_data</span><span class="p">,</span>
+                                                <span class="n">create_fixed_weir_data</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">data_structures.hydamo_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">check_and_fix_duplicate_code</span><span class="p">,</span>
+                                            <span class="n">convert_to_dhydamo_data</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">ROIDataModel</span> <span class="k">as</span> <span class="n">DataModel</span>
+<span class="kn">from</span> <span class="nn">data_structures.to_dhydro_helpers</span> <span class="kn">import</span> <span class="n">to_dhydro</span><span class="p">,</span> <span class="n">write_dimr</span>
+
+
+<div class="viewcode-block" id="DHydroData"><a class="viewcode-back" href="../api-ref/dhydro_data_api.html#dhydro_data.DHydroData">[docs]</a><span class="k">class</span> <span class="nc">DHydroData</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper class to convert raw data to:</span>
+<span class="sd">    1. load raw data into a DHydamoDataModel</span>
+<span class="sd">    2. load a DHydamo geopackage into a DHydamoDataModel</span>
+<span class="sd">    3. save a DHydamoDataModel into a DHydamo geopackage</span>
+<span class="sd">    4. save a DHYdamoDataModel into a D-HYDRO model</span>
+<span class="sd">    5. Clip structures by (buffered) branches extent</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        ddm (DHydamoDataModel): instance of DHydamoDataModel that is used by this clas</span>
+<span class="sd">        features (list): list of features that are present in self.ddm and do not have None values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="DHydroData.clip_structures_by_branches"><a class="viewcode-back" href="../api-ref/dhydro_data_api.html#dhydro_data.DHydroData.clip_structures_by_branches">[docs]</a>    <span class="k">def</span> <span class="nf">clip_structures_by_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">min_overlap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class method to drop structures from the data that are farther from a branch than &quot;buffer&quot;</span>
+<span class="sd">        Structures that are linestring are required to overlap with a branch for at least &quot;min_overlap&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            buffer (float): distance from branch that structures are kept (default = 1m)</span>
+<span class="sd">            min_overlap (float): percentage of branch and LineString structure that should overlap in order to keep it.</span>
+<span class="sd">                                 this drop, for example, culverts that are perpendicular to a branch</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span> <span class="o">=</span> <span class="n">_clip_structures_by_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="n">buffer</span><span class="p">,</span> <span class="n">min_overlap</span><span class="o">=</span><span class="n">min_overlap</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">dambreaks_from_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">DataModel</span><span class="p">()</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">create_dambreak_data</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">dm</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fixed_weirs_from_raw_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">min_length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">DataModel</span><span class="p">()</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">create_fixed_weir_data</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="n">min_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">dm</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DHydroData.hydamo_from_raw_data"><a class="viewcode-back" href="../api-ref/dhydro_data_api.html#dhydro_data.DHydroData.hydamo_from_raw_data">[docs]</a>    <span class="k">def</span> <span class="nf">hydamo_from_raw_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">branch_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class method to load raw_data into a DHydamoDataModel. This datamodel validates data against expected values</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            defaults (str): default settings to use (should be in ./dataset_configs)</span>
+<span class="sd">            config (str): configuration file to use (should be in ./dataset_configs)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># load features and add to DHydamoDataModel</span>
+        <span class="n">ddm</span> <span class="o">=</span> <span class="n">DataModel</span><span class="p">()</span>
+        <span class="n">ddm</span> <span class="o">=</span> <span class="n">convert_to_dhydamo_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_ddm</span><span class="p">(</span><span class="n">branch_snap_dist</span><span class="o">=</span><span class="n">branch_snap_dist</span><span class="p">,</span> <span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DHydroData.hydamo_from_gpkg"><a class="viewcode-back" href="../api-ref/dhydro_data_api.html#dhydro_data.DHydroData.hydamo_from_gpkg">[docs]</a>    <span class="k">def</span> <span class="nf">hydamo_from_gpkg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gpkg_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">branch_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class method to load data from geopackage and validate data against DHydamoDataModel</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            gpkg_path (str): file location of the geopackage to load</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># set geopackage path to self</span>
+        <span class="c1"># self.gpkg_path = gpkg_path</span>
+
+        <span class="c1"># initialize datamodel</span>
+        <span class="n">ddm</span> <span class="o">=</span> <span class="n">DataModel</span><span class="p">()</span>
+
+        <span class="c1"># loop over datamodel attributes and check if they are presentin the geopackage</span>
+        <span class="c1"># if so, set them to the datamodel</span>
+        <span class="n">attributes</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># print(&quot;succesfully loaded {}&quot;.format(attribute))</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">gpkg_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="n">attribute</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="c1"># print(&quot;failed to load {}&quot;.format(attribute))</span>
+                <span class="k">continue</span>
+
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">ddm</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># set datamodel to self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_ddm</span><span class="p">(</span><span class="n">branch_snap_dist</span><span class="o">=</span><span class="n">branch_snap_dist</span><span class="p">,</span> <span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DHydroData.hydamo_to_gpkg"><a class="viewcode-back" href="../api-ref/dhydro_data_api.html#dhydro_data.DHydroData.hydamo_to_gpkg">[docs]</a>    <span class="k">def</span> <span class="nf">hydamo_to_gpkg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_gpkg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class method that saves DHydamoDataModel to geopackage</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            output_gpkg (str): file location to save geopackage to</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># self.gpkg_path = output_gpkg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">to_gpkg</span><span class="p">(</span><span class="n">output_gpkg</span><span class="o">=</span><span class="n">output_gpkg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DHydroData.to_dhydro"><a class="viewcode-back" href="../api-ref/dhydro_data_api.html#dhydro_data.DHydroData.to_dhydro">[docs]</a>    <span class="k">def</span> <span class="nf">to_dhydro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;defaults&quot;</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class method that converts a DHydamoDataModel to a D-HYDRO Model and saves unless write=False</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (str): configuration file to use (should be in ./dataset_configs)</span>
+<span class="sd">            output_folder (str): folder to save D-HYDRO model to</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check if data has been loaded and correct attributes are set</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;ddm&quot;</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Modeldatabase not loaded&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">),</span> <span class="s2">&quot;Dambreak&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dambreaks_from_config</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="p">)</span>
+        <span class="n">to_dhydro</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="n">output_folder</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">write</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_dimr</span><span class="p">(</span><span class="n">output_folder</span><span class="o">=</span><span class="n">output_folder</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">write_dimr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">write_dimr</span><span class="p">(</span><span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="n">output_folder</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_ddm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">branch_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class method to add a DHydamoDataModel to self while checking for pre-existing data.</span>
+<span class="sd">        This method simply assigns the data if there is no pre-existing data.</span>
+<span class="sd">        Otherwise, it appends to the pre-existing data</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ddm (DHydamoDataModel): a DHydamoDataModel that is to be added to self.ddm</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># check if a datamodel already exists</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;ddm&quot;</span><span class="p">):</span>
+            <span class="c1"># if not, just assign</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span> <span class="o">=</span> <span class="n">ddm</span>
+
+            <span class="c1"># and fill list of features present</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># check if attribute is not None</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="c1"># if it does exist, check per attribute in datamodel if it already exists</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ddm</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># check if attribute is not None</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># if an attribute does not exist, simply assign and update features list</span>
+                    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+                    <span class="c1"># else, concatonate the old and new geodataframe and assign to the datamodel</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">in_gdf</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;waterloop&quot;</span><span class="p">:</span>
+                            <span class="n">in_gdf</span> <span class="o">=</span> <span class="n">merge_networks</span><span class="p">(</span>
+                                <span class="n">data_base_input</span><span class="o">=</span><span class="n">in_gdf</span><span class="p">,</span>
+                                <span class="n">data_match_input</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span>
+                                <span class="n">max_dist</span><span class="o">=</span><span class="n">branch_snap_dist</span><span class="p">,</span>
+                            <span class="p">)</span>
+
+                        <span class="n">new_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+                            <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="n">in_gdf</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="p">)</span>
+                        <span class="n">new_gdf</span> <span class="o">=</span> <span class="n">check_and_fix_duplicate_code</span><span class="p">(</span><span class="n">new_gdf</span><span class="p">)</span>
+
+                        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">new_gdf</span><span class="p">)</span></div>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By KRG Reef
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

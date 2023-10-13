@@ -1,0 +1,51 @@
+# Table of contents
+
+format: jb-book
+root: intro
+parts:
+  - caption: Getting Started    
+    chapters:
+    - file: getting_started/installation_guide
+    
+  - caption: Usage Guide
+    chapters:
+    - file: roi_toolbox/intro
+      sections:
+      - file: roi_toolbox/SAS_run_model
+      - file: roi_toolbox/SAS_build_model
+      
+    - file: inundation_toolbox/intro      
+      sections:        
+      - file: inundation_toolbox/hisreader_usage
+      - file: inundation_toolbox/clm_example_tol
+      - file: inundation_toolbox/fou_example_tol
+      - file: inundation_toolbox/map_example_tol
+      
+  - caption: API-reference
+    chapters: 
+    - file: api-ref/data_structures_api
+      sections:
+        - file: api-ref/dhydro_data_api      
+        - file: api-ref/fixed_weirs_helpers_api
+        - file: api-ref/hydamo_data_api
+        - file: api-ref/hydamo_helpers_api        
+        - file: api-ref/roi_data_api        
+        - file: api-ref/to_dhydro_helpers_api
+    
+    - file: api-ref/IT-API-doc
+      sections:
+        - file: api-ref/flowmeshreader_api
+        - file: api-ref/hisreader_api
+        - file: api-ref/inundationtoolbox_api        
+        - file: api-ref/plotting_api
+        
+  - caption: External Links
+    chapters:
+    - url: https://github.com/HydroLogicBV/D-HYDROLOGIC
+      title: D-HYDROLOGIC GitHub   
+    - url: https://github.com/Deltares/HYDROLIB-core
+      title: HYDROLIB-CORE GitHub
+    - url: https://github.com/Deltares/HYDROLIB
+      title: HYDROLIB GitHub
+    - url: https://deltares.github.io/HYDROLIB-core/0.5.2/
+      title: HYDROLIB-CORE Documentation
