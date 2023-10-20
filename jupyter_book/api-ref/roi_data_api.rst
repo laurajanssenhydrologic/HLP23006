@@ -1,8 +1,8 @@
-ROI Data Model
+FM Data Model
 ==============
 
-ROI Data Model
+FM Data Model
 --------------
-.. autoclass:: roi_data_model.ROIDataModel
+.. autoclass:: roi_data_model.FMDataModel
    :members: 
    

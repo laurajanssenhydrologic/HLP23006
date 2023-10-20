@@ -38,6 +38,7 @@ class DHydroData:
         else:
             rtc = None
 
+        print("Saving DIMR-configuration to disk")
         dimr = DIMRWriter(dimr_path=DIMR_BAT_PATH, output_path=output_path)
         dimr.write_dimrconfig(fm=fm, rr_model=rr, rtc_model=rtc)
         dimr.write_runbat()

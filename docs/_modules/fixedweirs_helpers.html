@@ -97,8 +97,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -145,14 +145,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    D-HydroLogic
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
@@ -184,12 +176,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/data_structures_api.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">Dhydro Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">FM Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_data_api.html">HYDAMO Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">FM Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/rrdata_api.html">RR Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -247,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2F_modules/fixedweirs_helpers.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -359,7 +304,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 
 <span class="kn">from</span> <span class="nn">data_structures.hydamo_helpers</span> <span class="kn">import</span> <span class="n">load_geo_file</span><span class="p">,</span> <span class="n">map_columns</span><span class="p">,</span> <span class="n">merge_to_dm</span>
-<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">ROIDataModel</span> <span class="k">as</span> <span class="n">DataModel</span>
+<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">FMDataModel</span> <span class="k">as</span> <span class="n">DataModel</span>
 
 
 <span class="k">def</span> <span class="nf">merge_to_fddm</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
@@ -368,16 +313,16 @@ document.write(`
 
 <div class="viewcode-block" id="create_dambreak_data"><a class="viewcode-back" href="../api-ref/fixed_weirs_helpers_api.html#fixedweirs_helpers.create_dambreak_data">[docs]</a><span class="k">def</span> <span class="nf">create_dambreak_data</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">):</span>
     <span class="n">defaults</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">defaults</span><span class="p">)</span>
-    <span class="n">db_data_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">),</span> <span class="s2">&quot;Dambreak&quot;</span><span class="p">)</span>
+    <span class="n">db_data_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">),</span> <span class="s2">&quot;dambreak&quot;</span><span class="p">)</span>
 
     <span class="n">code_padding</span> <span class="o">=</span> <span class="n">config</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span>  <span class="c1"># add prefix of length 4 to all objects with codes</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">db_data_config</span><span class="p">,</span> <span class="s2">&quot;dambreak_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">db_data_config</span><span class="o">.</span><span class="n">dambreak_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="n">db_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">db_data_config</span><span class="o">.</span><span class="n">dambreak_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;flood_defence&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">db_data_config</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">db_data_config</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">db_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">db_data_config</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;flood_defence&quot;</span><span class="p">)</span>
         <span class="n">db_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
             <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span><span class="p">,</span>
             <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Dambreak</span><span class="p">,</span>
             <span class="n">gdf</span><span class="o">=</span><span class="n">db_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">db_data_config</span><span class="o">.</span><span class="n">dambreak_index_mapping</span><span class="p">,</span>
+            <span class="n">index_mapping</span><span class="o">=</span><span class="n">db_data_config</span><span class="o">.</span><span class="n">column_mapping</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">dm</span><span class="o">.</span><span class="n">doorbraak</span> <span class="o">=</span> <span class="n">db_gdf</span>
@@ -393,25 +338,23 @@ document.write(`
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataModel</span><span class="p">:</span>
 
     <span class="n">defaults</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">defaults</span><span class="p">)</span>
-    <span class="n">fw_data_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">),</span> <span class="s2">&quot;FixedWeirs&quot;</span><span class="p">)</span>
+    <span class="n">fw_data_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">),</span> <span class="s2">&quot;fixed_weirs&quot;</span><span class="p">)</span>
 
     <span class="n">code_padding</span> <span class="o">=</span> <span class="n">config</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span>  <span class="c1"># add prefix of length 4 to all objects with codes</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fw_data_config</span><span class="p">,</span> <span class="s2">&quot;flood_defences_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-        <span class="n">fw_data_config</span><span class="o">.</span><span class="n">flood_defences_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-    <span class="p">):</span>
-        <span class="n">fd_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">fw_data_config</span><span class="o">.</span><span class="n">flood_defences_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;flood_defence&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fw_data_config</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">fw_data_config</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">fd_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">fw_data_config</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;flood_defence&quot;</span><span class="p">)</span>
         <span class="n">fd_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
             <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span><span class="p">,</span>
             <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">FixedWeirs</span><span class="p">,</span>
             <span class="n">gdf</span><span class="o">=</span><span class="n">fd_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">fw_data_config</span><span class="o">.</span><span class="n">fixed_weir_index_mapping</span><span class="p">,</span>
+            <span class="n">index_mapping</span><span class="o">=</span><span class="n">fw_data_config</span><span class="o">.</span><span class="n">column_mapping</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">min_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># fd_gdf = fd_gdf.loc[fd_gdf.geometry.length &gt; min_length, :]</span>
             <span class="n">fd_gdf</span> <span class="o">=</span> <span class="n">fd_gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">fd_gdf</span><span class="p">[</span><span class="n">fd_gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="n">min_length</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fw_data_config</span><span class="p">,</span> <span class="s2">&quot;dm_attribute&quot;</span><span class="p">):</span>
-            <span class="n">dm_attribute</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fw_data_config</span><span class="p">,</span> <span class="s2">&quot;dm_attribute&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fw_data_config</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">):</span>
+            <span class="n">dm_attribute</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fw_data_config</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">dm_attribute</span> <span class="o">=</span> <span class="s2">&quot;keringen&quot;</span>
 

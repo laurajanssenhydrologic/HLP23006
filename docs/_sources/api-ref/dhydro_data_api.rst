@@ -1,8 +1,8 @@
-Dhydro Data
+FM Data
 ===========
 
-Dhydro Data
+FM Data
 -----------
-.. autoclass:: dhydro_data.DHydroData
+.. autoclass:: fm_data.FMData
    :members: 
    

@@ -26,9 +26,9 @@ Helper functions to convert raw-data to a [ROI Data Model](roi_data_api.rst) com
 :link-type: doc
 :text-align: center
 
-**DhydroData**
+**FMData**
 ^^^
-Main class to read and write HYDAMO geopackages, convert raw data into HYDAMO format, and build D-HYDRO models.
+Main class to read and write HYDAMO geopackages, convert raw data into HYDAMO format, and build D-HYDRO DFLOWFM models.
 :::
 
 :::{grid-item-card} 
@@ -39,7 +39,7 @@ Main class to read and write HYDAMO geopackages, convert raw data into HYDAMO fo
 
 **To Dhydro Helper Functions**
 ^^^
-Helper functions that can convert a [ROI Data Model](roi_data_api.rst) into a D-HYDRO model.
+Helper functions that can convert a [FM Data Model](roi_data_api.rst) into a D-HYDRO model.
 :::
 
 :::{grid-item-card} 
@@ -59,20 +59,20 @@ HYDAMO data model.
 :link-type: doc
 :text-align: center
 
-**ROI Data Model**
+**FM Data Model**
 ^^^
 Extension of the [HYDAMO Data Model](hydamo_data_api.rst).
 :::
 
 :::{grid-item-card} 
 :columns: 4
-:link: fixed_weirs_helpers_api
+:link: rrdata_api
 :link-type: doc
 :text-align: center
 
-**Fixed Weirs Helper Functions**
+**RRData**
 ^^^
-Helper functions to convert fixed weirs to a [ROI Data Model](roi_data_api.rst) compliant format.
+Main class that helps build RR models
 :::
 
 ::::{grid}

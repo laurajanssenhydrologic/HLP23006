@@ -33,6 +33,7 @@ from shapely.geometry import Polygon
 
 from data_structures.roi_data_model import FMDataModel as DataModel
 
+CRS = r"EPSG:28992"
 FM_FOLDER = "dflowfm"
 OUTPUTDIR = "output"
 
@@ -1127,7 +1128,9 @@ def fm_to_dhydro(
             if hasattr(model_config.FM.two_d, "extent_path") and (
                 model_config.FM.two_d.extent_path is not None
             ):
-                extent = gpd.read_file(model_config.FM.two_d.extent_path).dissolve(by=None)
+                extent = gpd.read_file(model_config.FM.two_d.extent_path, crs=CRS)
+                extent["geometry"] = extent["geometry"].buffer(0.1)
+                extent = extent.dissolve(by=None).buffer(model_config.FM.two_d.two_d_buffer)
             else:
                 extent = dm.waterloop.dissolve(by=None).convex_hull.buffer(
                     model_config.FM.two_d.two_d_buffer

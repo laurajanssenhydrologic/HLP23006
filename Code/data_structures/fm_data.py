@@ -1,4 +1,4 @@
-from multiprocessing import Pool
+import os
 from pathlib import Path
 from typing import Dict, List
 
@@ -268,6 +268,7 @@ class FMData:
         else:
             fm = self.fmmodel
 
+        print("Saving FM model to disk")
         fm_path = output_path / FM_FOLDER
         fm.filepath = fm_path / "test.mdu"
 
@@ -280,20 +281,17 @@ class FMData:
         dimr.save(recurse=True)
 
         if len(self.files_to_save) > 0:
-            cpus = 8
-            pool = Pool(processes=cpus)
-            results = []
             for path, file in self.files_to_save.items():
-                file_path = fm_path / "test.bc"
-                print(file_path)
-                # file.save(filepath=path)
-                results.append(pool.apply_async(file.save(), kwds={"filepath": path}))
+                file_path = fm_path / path
+                print(type(file))
+                print("Saving: {}".format(file_path))
+                try:
+                    os.remove(file_path)
+                except OSError:
+                    pass
 
-            for r in results:
-                _, stderr = r.get()
+                file.save(filepath=path)
 
-            pool.close()
-            pool.join()
         return fm
 
     def _set_dm(self, dm: DataModel, branch_snap_dist: float = None) -> None:

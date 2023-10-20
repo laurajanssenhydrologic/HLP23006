@@ -165,10 +165,15 @@ class RRData:
             )
             _laterals.append(_lateral)
 
-        extforcefilenew = ExtModel(lateral=_laterals)
+        # extforcefilenew = ExtModel(lateral=_laterals)
+        extforcefilenew = ExtModel()
+        extforcefilenew.Config.validate_assignment = False
+        extforcefilenew.lateral = _laterals
         forcingmodel = ForcingModel(forcing=_forcings)
-        print(len(_forcings))
-        self.fm.files_to_save["boundaryconditions.bc"] = deepcopy(forcingmodel)
+        # forcingmodel = ForcingModel()
+        # forcingmodel.Config.validate_assignment = False
+        # forcingmodel.forcing = _forcings
+        self.fm.files_to_save["boundaryconditions.bc"] = forcingmodel
 
         self.fm.merge_ext_files(extforcefile=extforcefilenew)
 
@@ -179,13 +184,14 @@ class RRData:
         lat_path: str,
         date_format: str = r"'%Y/%m/%d;%H:%M:%S'",
         d_ref: datetime = datetime(2001, 1, 1, 0, 0, 0),
+        total: int = 14774565,
     ) -> List:
         print("reading file")
         ## Read as text file and parse headers and data including timestamp
         laterals = []
         entries = 0
         with open(lat_path) as file:
-            for n, line in tqdm(enumerate(file), total=14774565):
+            for n, line in tqdm(enumerate(file), total=total):
                 if "FLBR" in line:
                     sline = line.split()
                     entry = [sline[2]]
@@ -243,6 +249,7 @@ class RRData:
         else:
             drr = self.drrmodel
 
+        print("Saving RR model to disk")
         rr_writer = DRRWriter(rrmodel=drr, output_dir=output_path, name="RR", wwtp=wwtp)
         rr_writer.write_all()
         return drr

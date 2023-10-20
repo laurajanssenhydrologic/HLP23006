@@ -97,8 +97,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -145,14 +145,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    D-HydroLogic
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
@@ -184,12 +176,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/data_structures_api.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">Dhydro Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">FM Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_data_api.html">HYDAMO Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">FM Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/rrdata_api.html">RR Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -247,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2F_modules/to_dhydro_helpers.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -366,12 +311,14 @@ document.write(`
 <span class="kn">from</span> <span class="nn">geo_tools.roughness_to_mesh</span> <span class="kn">import</span> <span class="n">create_roughness_xyz</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.basemodel</span> <span class="kn">import</span> <span class="n">DiskOnlyFileModel</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.io.crosssection.models</span> <span class="kn">import</span> <span class="n">CrossDefModel</span><span class="p">,</span> <span class="n">CrossLocModel</span>
-<span class="kn">from</span> <span class="nn">hydrolib.core.io.dimr.models</span> <span class="kn">import</span> <span class="n">DIMR</span><span class="p">,</span> <span class="n">FMComponent</span>
-<span class="kn">from</span> <span class="nn">hydrolib.core.io.friction.models</span> <span class="kn">import</span> <span class="n">FrictBranch</span><span class="p">,</span> <span class="n">FrictGlobal</span><span class="p">,</span> <span class="n">FrictionModel</span>
+<span class="kn">from</span> <span class="nn">hydrolib.core.io.friction.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">FrictBranch</span><span class="p">,</span> <span class="n">FrictGlobal</span><span class="p">,</span>
+                                              <span class="n">FrictionModel</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.io.ini.models</span> <span class="kn">import</span> <span class="n">INIBasedModel</span><span class="p">,</span> <span class="n">INIGeneral</span><span class="p">,</span> <span class="n">INIModel</span>
-<span class="kn">from</span> <span class="nn">hydrolib.core.io.inifield.models</span> <span class="kn">import</span> <span class="n">IniFieldModel</span><span class="p">,</span> <span class="n">InitialField</span><span class="p">,</span> <span class="n">ParameterField</span>
+<span class="kn">from</span> <span class="nn">hydrolib.core.io.inifield.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IniFieldModel</span><span class="p">,</span> <span class="n">InitialField</span><span class="p">,</span>
+                                              <span class="n">ParameterField</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.io.mdu.models</span> <span class="kn">import</span> <span class="n">FMModel</span>
-<span class="kn">from</span> <span class="nn">hydrolib.core.io.onedfield.models</span> <span class="kn">import</span> <span class="n">OneDFieldBranch</span><span class="p">,</span> <span class="n">OneDFieldGlobal</span><span class="p">,</span> <span class="n">OneDFieldModel</span>
+<span class="kn">from</span> <span class="nn">hydrolib.core.io.onedfield.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">OneDFieldBranch</span><span class="p">,</span>
+                                               <span class="n">OneDFieldGlobal</span><span class="p">,</span> <span class="n">OneDFieldModel</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.io.polyfile.models</span> <span class="kn">import</span> <span class="n">Description</span><span class="p">,</span> <span class="n">Metadata</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.io.polyfile.models</span> <span class="kn">import</span> <span class="n">Point</span> <span class="k">as</span> <span class="n">hPoint</span>
 <span class="kn">from</span> <span class="nn">hydrolib.core.io.polyfile.models</span> <span class="kn">import</span> <span class="n">PolyFile</span><span class="p">,</span> <span class="n">PolyObject</span>
@@ -379,22 +326,22 @@ document.write(`
 <span class="kn">from</span> <span class="nn">hydrolib.dhydamo.converters.df2hydrolibmodel</span> <span class="kn">import</span> <span class="n">Df2HydrolibModel</span>
 <span class="kn">from</span> <span class="nn">hydrolib.dhydamo.core.hydamo</span> <span class="kn">import</span> <span class="n">HyDAMO</span>
 <span class="kn">from</span> <span class="nn">hydrolib.dhydamo.geometry</span> <span class="kn">import</span> <span class="n">mesh</span>
-<span class="kn">from</span> <span class="nn">hydrolib.dhydamo.io.dimrwriter</span> <span class="kn">import</span> <span class="n">DIMRWriter</span>
 <span class="kn">from</span> <span class="nn">rasterstats</span> <span class="kn">import</span> <span class="n">zonal_stats</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span> <span class="k">as</span> <span class="n">sPoint</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">box</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
 
-<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">ROIDataModel</span> <span class="k">as</span> <span class="n">DataModel</span>
+<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">FMDataModel</span> <span class="k">as</span> <span class="n">DataModel</span>
 
 <span class="n">FM_FOLDER</span> <span class="o">=</span> <span class="s2">&quot;dflowfm&quot;</span>
 <span class="n">OUTPUTDIR</span> <span class="o">=</span> <span class="s2">&quot;output&quot;</span>
 
 
-<div class="viewcode-block" id="to_dhydro"><a class="viewcode-back" href="../api-ref/to_dhydro_helpers_api.html#to_dhydro_helpers.to_dhydro">[docs]</a><span class="k">def</span> <span class="nf">to_dhydro</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="fm_to_dhydro"><a class="viewcode-back" href="../api-ref/to_dhydro_helpers_api.html#to_dhydro_helpers.fm_to_dhydro">[docs]</a><span class="k">def</span> <span class="nf">fm_to_dhydro</span><span class="p">(</span>
     <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span>
+    <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
     <span class="n">extent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">initial_1D_waterdepth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">output_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -438,9 +385,9 @@ document.write(`
         <span class="k">return</span> <span class="n">fm</span>
 
     <span class="k">def</span> <span class="nf">add_1D_initial_waterlevel</span><span class="p">(</span>
-        <span class="n">fm</span><span class="p">:</span> <span class="n">FMModel</span><span class="p">,</span> <span class="n">fm_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">initial_1D_waterlevl</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">fm</span><span class="p">:</span> <span class="n">FMModel</span><span class="p">,</span> <span class="n">fm_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">initial_1D_waterlevl</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">):</span>
-        <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span>
+        <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span>
         <span class="n">branch_field_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches_gdf</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">branch</span><span class="p">[</span><span class="s2">&quot;peil&quot;</span><span class="p">]):</span>
@@ -481,9 +428,9 @@ document.write(`
 
         <span class="k">return</span> <span class="n">fm</span>
 
-    <span class="k">def</span> <span class="nf">add_branches</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">add_branches</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
         <span class="n">hydamo</span><span class="o">.</span><span class="n">branches</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span>
-            <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="n">check_geotype</span><span class="o">=</span><span class="kc">False</span>
+            <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="n">check_geotype</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>  <span class="c1"># using globalid leads to errors in D-HYDRO. Probably too long name</span>
 
         <span class="c1"># Check for circular features in branches</span>
@@ -497,6 +444,7 @@ document.write(`
                 <span class="n">hydamo</span><span class="o">.</span><span class="n">branches_popped</span> <span class="o">=</span> <span class="n">hydamo</span><span class="o">.</span><span class="n">branches_popped</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">branch</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+                <span class="n">code</span> <span class="o">=</span> <span class="n">branch</span><span class="o">.</span><span class="n">code</span>
                 <span class="n">hydamo</span><span class="o">.</span><span class="n">branches_popped</span> <span class="o">=</span> <span class="n">hydamo</span><span class="o">.</span><span class="n">branches_popped</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
 
         <span class="n">hydamo</span><span class="o">.</span><span class="n">branches</span><span class="o">.</span><span class="n">delete_all</span><span class="p">()</span>
@@ -519,7 +467,7 @@ document.write(`
             <span class="c1"># )</span>
 
             <span class="c1"># Group profile_points by line_id and create LineStrings</span>
-            <span class="n">profiel_punt_gdf</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">profielpunt</span>
+            <span class="n">profiel_punt_gdf</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">profielpunt</span>
             <span class="n">unique_lines</span> <span class="o">=</span> <span class="n">profiel_punt_gdf</span><span class="p">[</span><span class="s2">&quot;profiellijnid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
             <span class="n">profiel_punt_lines</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -552,29 +500,29 @@ document.write(`
 
             <span class="c1"># Snap profiles to branch</span>
             <span class="c1"># hydamo.profile_roughness.read_gpkg_layer(gpkg_path, layer_name=&quot;ruwheidsprofiel&quot;)</span>
-            <span class="n">hydamo</span><span class="o">.</span><span class="n">profile_roughness</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">ruwheidsprofiel</span><span class="p">)</span>
+            <span class="n">hydamo</span><span class="o">.</span><span class="n">profile_roughness</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">ruwheidsprofiel</span><span class="p">)</span>
             <span class="n">hydamo</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">snap_to_branch</span><span class="p">(</span><span class="n">hydamo</span><span class="o">.</span><span class="n">branches</span><span class="p">,</span> <span class="n">snap_method</span><span class="o">=</span><span class="s2">&quot;intersecting&quot;</span><span class="p">)</span>
             <span class="n">hydamo</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;branch_offset&quot;</span><span class="p">])</span>
             <span class="c1"># hydamo.profile_line.read_gpkg_layer(gpkg_path, layer_name=&quot;profiellijn&quot;)</span>
             <span class="c1"># hydamo.profile_group.read_gpkg_layer(gpkg_path, layer_name=&quot;profielgroep&quot;)</span>
-            <span class="n">hydamo</span><span class="o">.</span><span class="n">profile_line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">profiellijn</span><span class="p">)</span>
-            <span class="n">hydamo</span><span class="o">.</span><span class="n">profile_group</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">profielgroep</span><span class="p">)</span>
+            <span class="n">hydamo</span><span class="o">.</span><span class="n">profile_line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">profiellijn</span><span class="p">)</span>
+            <span class="n">hydamo</span><span class="o">.</span><span class="n">profile_group</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">profielgroep</span><span class="p">)</span>
 
             <span class="n">hydamo</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">hydamo</span><span class="o">.</span><span class="n">profile</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hydamo</span><span class="o">.</span><span class="n">profile</span><span class="p">[</span><span class="s2">&quot;profiellijnid&quot;</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;hydroobject_normgp&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;normgeparamprofielwaarde&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">):</span>
-            <span class="n">hydamo</span><span class="o">.</span><span class="n">param_profile</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">hydroobject_normgp</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;globalid&quot;</span><span class="p">)</span>
+            <span class="n">hydamo</span><span class="o">.</span><span class="n">param_profile</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">hydroobject_normgp</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;globalid&quot;</span><span class="p">)</span>
             <span class="n">hydamo</span><span class="o">.</span><span class="n">param_profile_values</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span>
-                <span class="n">ddm</span><span class="o">.</span><span class="n">normgeparamprofielwaarde</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;normgeparamprofielid&quot;</span>
+                <span class="n">dm</span><span class="o">.</span><span class="n">normgeparamprofielwaarde</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;normgeparamprofielid&quot;</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">hydamo</span>
 
     <span class="k">def</span> <span class="nf">add_bridges</span><span class="p">(</span>
-        <span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">default_height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">default_height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
 
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">bridges</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">brug</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;code&quot;</span><span class="p">)</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">bridges</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">brug</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;code&quot;</span><span class="p">)</span>
         <span class="n">hydamo</span><span class="o">.</span><span class="n">bridges</span><span class="o">.</span><span class="n">snap_to_branch</span><span class="p">(</span><span class="n">hydamo</span><span class="o">.</span><span class="n">branches</span><span class="p">,</span> <span class="n">snap_method</span><span class="o">=</span><span class="s2">&quot;overal&quot;</span><span class="p">,</span> <span class="n">maxdist</span><span class="o">=</span><span class="n">max_snap_dist</span><span class="p">)</span>
         <span class="n">hydamo</span><span class="o">.</span><span class="n">bridges</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;branch_offset&quot;</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bridge</span> <span class="ow">in</span> <span class="n">hydamo</span><span class="o">.</span><span class="n">bridges</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -596,10 +544,10 @@ document.write(`
 
         <span class="k">return</span> <span class="n">hydamo</span>
 
-    <span class="k">def</span> <span class="nf">add_culverts</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">culverts</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">duiker</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">add_culverts</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">culverts</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">duiker</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">culvert</span> <span class="ow">in</span> <span class="n">ddm</span><span class="o">.</span><span class="n">duiker</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">culvert</span> <span class="ow">in</span> <span class="n">dm</span><span class="o">.</span><span class="n">duiker</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">culvert</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">],</span> <span class="n">LineString</span><span class="p">):</span>
                 <span class="n">hydamo</span><span class="o">.</span><span class="n">culverts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hydamo</span><span class="o">.</span><span class="n">culverts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
                     <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span>
@@ -629,9 +577,9 @@ document.write(`
 
         <span class="k">return</span> <span class="n">hydamo</span>
 
-    <span class="k">def</span> <span class="nf">add_dambreaks</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">FMModel</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">z_default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FMModel</span><span class="p">:</span>
-        <span class="n">db_gdf</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">doorbraak</span>
-        <span class="n">fw_gdf</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">keringen</span>
+    <span class="k">def</span> <span class="nf">add_dambreaks</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">FMModel</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">z_default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FMModel</span><span class="p">:</span>
+        <span class="n">db_gdf</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">doorbraak</span>
+        <span class="n">fw_gdf</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">keringen</span>
 
         <span class="n">fw_point_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">fw</span> <span class="ow">in</span> <span class="n">fw_gdf</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -709,12 +657,12 @@ document.write(`
 
         <span class="k">return</span> <span class="n">fm</span>
 
-    <span class="k">def</span> <span class="nf">add_fixed_weirs</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">FMModel</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">FMModel</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">add_fixed_weirs</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">FMModel</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">FMModel</span><span class="p">:</span>
         <span class="n">fw_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ddm</span><span class="p">,</span> <span class="s2">&quot;keringen&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ddm</span><span class="o">.</span><span class="n">keringen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">keringen</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ddm</span><span class="p">,</span> <span class="s2">&quot;overiglijnelement&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ddm</span><span class="o">.</span><span class="n">overiglijnelement</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">overiglijnelement</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="s2">&quot;keringen&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dm</span><span class="o">.</span><span class="n">keringen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">keringen</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="s2">&quot;overiglijnelement&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dm</span><span class="o">.</span><span class="n">overiglijnelement</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">overiglijnelement</span><span class="p">)</span>
 
         <span class="n">line_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">fw_gdf</span> <span class="ow">in</span> <span class="n">fw_list</span><span class="p">:</span>
@@ -735,16 +683,16 @@ document.write(`
         <span class="n">fm</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">fixedweirfile</span> <span class="o">=</span> <span class="p">[</span><span class="n">PolyFile</span><span class="p">(</span><span class="n">has_z_values</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="n">line_list</span><span class="p">)]</span>
         <span class="k">return</span> <span class="n">fm</span>
 
-    <span class="k">def</span> <span class="nf">add_pumps</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">gemaal</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">add_pumps</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">gemaal</span><span class="p">)</span>
         <span class="c1"># hydamo.pumps.set_data(ddm.pomp)</span>
         <span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="o">.</span><span class="n">snap_to_branch</span><span class="p">(</span>
             <span class="n">hydamo</span><span class="o">.</span><span class="n">branches</span><span class="p">,</span> <span class="n">snap_method</span><span class="o">=</span><span class="s2">&quot;overal&quot;</span><span class="p">,</span> <span class="n">maxdist</span><span class="o">=</span><span class="n">max_snap_dist</span>
         <span class="p">)</span>
         <span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;branch_offset&quot;</span><span class="p">])</span>
 
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">pumps</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">pomp</span><span class="p">[</span><span class="n">ddm</span><span class="o">.</span><span class="n">pomp</span><span class="p">[</span><span class="s2">&quot;gemaalid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="p">[</span><span class="s2">&quot;globalid&quot;</span><span class="p">])])</span>
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">sturing</span><span class="p">)</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">pumps</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">pomp</span><span class="p">[</span><span class="n">dm</span><span class="o">.</span><span class="n">pomp</span><span class="p">[</span><span class="s2">&quot;gemaalid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="p">[</span><span class="s2">&quot;globalid&quot;</span><span class="p">])])</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">sturing</span><span class="p">)</span>
 
         <span class="n">hydamo</span><span class="o">.</span><span class="n">structures</span><span class="o">.</span><span class="n">convert</span><span class="o">.</span><span class="n">pumps</span><span class="p">(</span>
             <span class="n">hydamo</span><span class="o">.</span><span class="n">pumpstations</span><span class="p">,</span> <span class="n">pumps</span><span class="o">=</span><span class="n">hydamo</span><span class="o">.</span><span class="n">pumps</span><span class="p">,</span> <span class="n">management</span><span class="o">=</span><span class="n">hydamo</span><span class="o">.</span><span class="n">management</span>
@@ -752,9 +700,9 @@ document.write(`
 
         <span class="k">return</span> <span class="n">hydamo</span>
 
-    <span class="k">def</span> <span class="nf">add_river_profiles</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
-        <span class="n">branches</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prof</span> <span class="ow">in</span> <span class="n">ddm</span><span class="o">.</span><span class="n">rivier_profielen_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">add_river_profiles</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
+        <span class="n">branches</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prof</span> <span class="ow">in</span> <span class="n">dm</span><span class="o">.</span><span class="n">rivier_profielen_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">branches</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="s2">&quot;branchid&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;branch for profile not found&quot;</span><span class="p">)</span>
                 <span class="k">continue</span>
@@ -765,7 +713,7 @@ document.write(`
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;profile too far on branch&quot;</span><span class="p">)</span>
                 <span class="k">continue</span>
 
-            <span class="n">profile</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">rivier_profielen</span><span class="p">[</span><span class="n">ddm</span><span class="o">.</span><span class="n">rivier_profielen</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prof</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span>
+            <span class="n">profile</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">rivier_profielen</span><span class="p">[</span><span class="n">dm</span><span class="o">.</span><span class="n">rivier_profielen</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prof</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span>
             <span class="n">profile</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;levels&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
             <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -818,9 +766,9 @@ document.write(`
 
         <span class="k">return</span> <span class="n">hydamo</span>
 
-    <span class="k">def</span> <span class="nf">add_river_roughness</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">FMModel</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FMModel</span><span class="p">:</span>
-        <span class="n">branches</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">ddm</span><span class="o">.</span><span class="n">rivier_ruwheid</span>
+    <span class="k">def</span> <span class="nf">add_river_roughness</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">FMModel</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FMModel</span><span class="p">:</span>
+        <span class="n">branches</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">rivier_ruwheid</span>
         <span class="n">sections</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">section</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
         <span class="n">friction_file_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -983,10 +931,10 @@ document.write(`
 
         <span class="k">return</span> <span class="n">fm</span>
 
-    <span class="k">def</span> <span class="nf">add_weirs</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">weirs</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">stuw</span><span class="p">)</span>
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">opening</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">kunstwerkopening</span><span class="p">)</span>
-        <span class="n">hydamo</span><span class="o">.</span><span class="n">management_device</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">ddm</span><span class="o">.</span><span class="n">regelmiddel</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">add_weirs</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">hydamo</span><span class="p">:</span> <span class="n">HyDAMO</span><span class="p">,</span> <span class="n">max_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HyDAMO</span><span class="p">:</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">weirs</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">stuw</span><span class="p">)</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">opening</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">kunstwerkopening</span><span class="p">)</span>
+        <span class="n">hydamo</span><span class="o">.</span><span class="n">management_device</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">regelmiddel</span><span class="p">)</span>
 
         <span class="n">hydamo</span><span class="o">.</span><span class="n">weirs</span><span class="o">.</span><span class="n">snap_to_branch</span><span class="p">(</span><span class="n">hydamo</span><span class="o">.</span><span class="n">branches</span><span class="p">,</span> <span class="n">snap_method</span><span class="o">=</span><span class="s2">&quot;overal&quot;</span><span class="p">,</span> <span class="n">maxdist</span><span class="o">=</span><span class="n">max_snap_dist</span><span class="p">)</span>
         <span class="n">hydamo</span><span class="o">.</span><span class="n">weirs</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;branch_offset&quot;</span><span class="p">])</span>
@@ -1380,12 +1328,12 @@ document.write(`
     <span class="c1"># build FM model if set in config file</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model_config</span><span class="p">,</span> <span class="s2">&quot;FM&quot;</span><span class="p">):</span>
         <span class="c1"># initialize a simple FM model</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">simple_fm_model</span><span class="p">(</span>
+        <span class="n">fm</span> <span class="o">=</span> <span class="n">simple_fm_model</span><span class="p">(</span>
             <span class="n">start_time</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">stop_time</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">stop_time</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">outputdir</span> <span class="o">=</span> <span class="n">OUTPUTDIR</span>
+        <span class="n">fm</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">outputdir</span> <span class="o">=</span> <span class="n">OUTPUTDIR</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span> <span class="o">=</span> <span class="n">HyDAMO</span><span class="p">()</span>
+        <span class="n">hydamo</span> <span class="o">=</span> <span class="n">HyDAMO</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d_bool</span><span class="p">:</span>  <span class="c1"># compute extent of 1D network</span>
             <span class="c1"># Add to gpgk?</span>
@@ -1395,7 +1343,7 @@ document.write(`
             <span class="p">):</span>
                 <span class="n">extent</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d</span><span class="o">.</span><span class="n">extent_path</span><span class="p">)</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">convex_hull</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span>
+                <span class="n">extent</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">convex_hull</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span>
                     <span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d</span><span class="o">.</span><span class="n">two_d_buffer</span>
                 <span class="p">)</span>
             <span class="c1"># if &quot;doorbraak&quot; in self.features:</span>
@@ -1408,18 +1356,16 @@ document.write(`
         <span class="c1"># build 1D model</span>
         <span class="k">if</span> <span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">one_d_bool</span><span class="p">:</span>
             <span class="c1"># check if there are branches in the data</span>
-            <span class="k">if</span> <span class="s2">&quot;waterloop&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;waterloop&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing branches&quot;</span><span class="p">)</span>
 
             <span class="c1"># add branches, profiles and norm profiles</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">working on 1D branches</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span> <span class="o">=</span> <span class="n">add_branches</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">hydamo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span><span class="p">)</span>
+            <span class="n">hydamo</span> <span class="o">=</span> <span class="n">add_branches</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">hydamo</span><span class="o">=</span><span class="n">hydamo</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;rivier_profielen_data&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-                <span class="s2">&quot;rivier_profielen&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span>
-            <span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;rivier_profielen_data&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;rivier_profielen&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">working on river profiles</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span> <span class="o">=</span> <span class="n">add_river_profiles</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">hydamo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span><span class="p">)</span>
+                <span class="n">hydamo</span> <span class="o">=</span> <span class="n">add_river_profiles</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">hydamo</span><span class="o">=</span><span class="n">hydamo</span><span class="p">)</span>
 
             <span class="c1"># Loop over structures and add when present in the data</span>
             <span class="n">struct_functions</span> <span class="o">=</span> <span class="p">{</span>
@@ -1430,49 +1376,47 @@ document.write(`
             <span class="p">}</span>
 
             <span class="k">for</span> <span class="n">structure</span><span class="p">,</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">struct_functions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">structure</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">structure</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">working on </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">structure</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span>
-                        <span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span>
-                        <span class="n">hydamo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span><span class="p">,</span>
+                    <span class="n">hydamo</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span>
+                        <span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span>
+                        <span class="n">hydamo</span><span class="o">=</span><span class="n">hydamo</span><span class="p">,</span>
                         <span class="n">max_snap_dist</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">one_d</span><span class="o">.</span><span class="n">max_snap_dist</span><span class="p">,</span>
                     <span class="p">)</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;tunnel&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d_bool</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_tunnels</span><span class="p">(</span>
-                    <span class="n">hydamo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span><span class="p">,</span>
-                    <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;tunnel&quot;</span> <span class="ow">in</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d_bool</span><span class="p">):</span>
+                <span class="n">fm</span> <span class="o">=</span> <span class="n">add_tunnels</span><span class="p">(</span>
+                    <span class="n">hydamo</span><span class="o">=</span><span class="n">hydamo</span><span class="p">,</span>
+                    <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span>
                     <span class="n">max_dist_to_struct</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">one_d</span><span class="o">.</span><span class="n">max_dist_to_struct</span><span class="p">,</span>
                     <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span>
                 <span class="p">)</span>
 
             <span class="c1"># add 1D model</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Completig 1D model</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span> <span class="o">=</span> <span class="n">build_1D_model</span><span class="p">(</span>
-                <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span>
-                <span class="n">features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
-                <span class="n">hydamo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hydamo</span><span class="p">,</span>
+            <span class="n">fm</span><span class="p">,</span> <span class="n">hydamo</span> <span class="o">=</span> <span class="n">build_1D_model</span><span class="p">(</span>
+                <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span>
+                <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+                <span class="n">hydamo</span><span class="o">=</span><span class="n">hydamo</span><span class="p">,</span>
                 <span class="n">node_distance</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">one_d</span><span class="o">.</span><span class="n">node_distance</span><span class="p">,</span>
                 <span class="n">max_dist_to_struct</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">one_d</span><span class="o">.</span><span class="n">max_dist_to_struct</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;rivier_profielen_data&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-                <span class="s2">&quot;rivier_profielen&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span>
-            <span class="p">):</span>
-                <span class="k">if</span> <span class="s2">&quot;rivier_ruwheid&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_river_roughness</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;rivier_profielen_data&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;rivier_profielen&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">):</span>
+                <span class="k">if</span> <span class="s2">&quot;rivier_ruwheid&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+                    <span class="n">fm</span> <span class="o">=</span> <span class="n">add_river_roughness</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_river_roughness_default</span><span class="p">(</span><span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">)</span>
+                    <span class="n">fm</span> <span class="o">=</span> <span class="n">add_river_roughness_default</span><span class="p">(</span><span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;peil&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">output_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="n">fm_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span> <span class="o">/</span> <span class="n">FM_FOLDER</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_1D_initial_waterlevel</span><span class="p">(</span>
-                    <span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span>
-                    <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span>
+            <span class="n">fm_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span> <span class="o">/</span> <span class="n">FM_FOLDER</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;peil&quot;</span> <span class="ow">in</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">output_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">fm</span> <span class="o">=</span> <span class="n">add_1D_initial_waterlevel</span><span class="p">(</span>
+                    <span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span>
+                    <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span>
                     <span class="n">fm_path</span><span class="o">=</span><span class="n">fm_path</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_1D_initial_waterdepth</span><span class="p">(</span>
-                    <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span>
+                <span class="n">fm</span> <span class="o">=</span> <span class="n">add_1D_initial_waterdepth</span><span class="p">(</span>
+                    <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span>
                     <span class="n">fm_path</span><span class="o">=</span><span class="n">fm_path</span><span class="p">,</span>
                     <span class="n">initial_1D_waterdepth</span><span class="o">=</span><span class="n">initial_1D_waterdepth</span><span class="p">,</span>
                 <span class="p">)</span>
@@ -1486,7 +1430,7 @@ document.write(`
             <span class="p">):</span>
                 <span class="n">extent</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d</span><span class="o">.</span><span class="n">extent_path</span><span class="p">)</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">convex_hull</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span>
+                <span class="n">extent</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">waterloop</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">convex_hull</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span>
                     <span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d</span><span class="o">.</span><span class="n">two_d_buffer</span>
                 <span class="p">)</span>
             <span class="c1"># if &quot;doorbraak&quot; in self.features:</span>
@@ -1514,46 +1458,47 @@ document.write(`
 
             <span class="c1"># add 2D model</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Building 2D model grid</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">build_2D_model</span><span class="p">(</span>
+            <span class="n">fm</span> <span class="o">=</span> <span class="n">build_2D_model</span><span class="p">(</span>
                 <span class="n">dx</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span>
                 <span class="n">dy</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">two_d</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span>
                 <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span>
-                <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span>
+                <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span>
                 <span class="n">one_d</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">one_d_bool</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;keringen&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;overiglijnelement&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_fixed_weirs</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;keringen&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;overiglijnelement&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">):</span>
+                <span class="n">fm</span> <span class="o">=</span> <span class="n">add_fixed_weirs</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="s2">&quot;doorbraak&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">add_dambreaks</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ddm</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;doorbraak&quot;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+                <span class="n">fm</span> <span class="o">=</span> <span class="n">add_dambreaks</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="p">,</span> <span class="s2">&quot;hydrolib_core_options&quot;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fm</span> <span class="o">=</span> <span class="n">set_hydrolib_core_options</span><span class="p">(</span>
-                <span class="n">fmmodel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">hydrolib_core_options</span>
-            <span class="p">)</span></div>
+            <span class="n">fm</span> <span class="o">=</span> <span class="n">set_hydrolib_core_options</span><span class="p">(</span>
+                <span class="n">fmmodel</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">model_config</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">hydrolib_core_options</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">fm</span></div>
 
 
-<div class="viewcode-block" id="write_dimr"><a class="viewcode-back" href="../api-ref/to_dhydro_helpers_api.html#to_dhydro_helpers.write_dimr">[docs]</a><span class="k">def</span> <span class="nf">write_dimr</span><span class="p">(</span><span class="n">fm</span><span class="p">:</span> <span class="n">FMModel</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<span class="c1"># def write_dimr(fm: FMModel, output_folder: str):</span>
+<span class="c1">#     &quot;&quot;&quot; &quot;&quot;&quot;</span>
 
-    <span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span>
-    <span class="n">output_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">fm_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span> <span class="o">/</span> <span class="n">FM_FOLDER</span>
-    <span class="n">fm</span><span class="o">.</span><span class="n">filepath</span> <span class="o">=</span> <span class="n">fm_path</span> <span class="o">/</span> <span class="s2">&quot;test.mdu&quot;</span>
+<span class="c1">#     output_path = Path(output_folder)</span>
+<span class="c1">#     output_path.mkdir(exist_ok=True, parents=True)</span>
+<span class="c1">#     fm_path = Path(output_folder) / FM_FOLDER</span>
+<span class="c1">#     fm.filepath = fm_path / &quot;test.mdu&quot;</span>
 
-    <span class="n">dimr</span> <span class="o">=</span> <span class="n">DIMR</span><span class="p">()</span>
-    <span class="n">dimr</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">FMComponent</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;DFM&quot;</span><span class="p">,</span> <span class="n">workingDir</span><span class="o">=</span><span class="n">output_path</span> <span class="o">/</span> <span class="s2">&quot;dflowfm&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">fm</span><span class="p">,</span> <span class="n">inputfile</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">filepath</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-    <span class="n">dimr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">dimr_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Program Files\Deltares\D-HYDRO Suite 2023.01 1D2D\plugins\DeltaShell.Dimr\kernels\x64\dimr\scripts\run_dimr.bat&quot;</span>
-    <span class="n">dimr</span> <span class="o">=</span> <span class="n">DIMRWriter</span><span class="p">(</span><span class="n">dimr_path</span><span class="o">=</span><span class="n">dimr_path</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">output_path</span><span class="p">)</span>
-    <span class="n">dimr</span><span class="o">.</span><span class="n">write_dimrconfig</span><span class="p">(</span><span class="n">fm</span><span class="o">=</span><span class="n">fm</span><span class="p">)</span>  <span class="c1"># , rr_model=drrmodel, rtc_model=drtcmodel)</span>
-    <span class="n">dimr</span><span class="o">.</span><span class="n">write_runbat</span><span class="p">()</span></div>
+<span class="c1">#     dimr = DIMR()</span>
+<span class="c1">#     dimr.component.append(</span>
+<span class="c1">#         FMComponent(</span>
+<span class="c1">#             name=&quot;DFM&quot;, workingDir=output_path / &quot;dflowfm&quot;, model=fm, inputfile=fm.filepath</span>
+<span class="c1">#         )</span>
+<span class="c1">#     )</span>
+<span class="c1">#     dimr.save(recurse=True)</span>
+<span class="c1">#     dimr_path = r&quot;C:\Program Files\Deltares\D-HYDRO Suite 2023.01 1D2D\plugins\DeltaShell.Dimr\kernels\x64\dimr\scripts\run_dimr.bat&quot;</span>
+<span class="c1">#     dimr = DIMRWriter(dimr_path=dimr_path, output_path=output_path)</span>
+<span class="c1">#     dimr.write_dimrconfig(fm=fm)  # , rr_model=drrmodel, rtc_model=drtcmodel)</span>
+<span class="c1">#     dimr.write_runbat()</span>
 </pre></div>
 
                 </article>

@@ -42,5 +42,8 @@ sphinx:
   - 'sphinx.ext.napoleon'
   - 'sphinx.ext.viewcode'
   - 'sphinx.ext.autosummary'
+  config:
+    html_theme_options:
+      use_download_button: false
  # config:
    # autosummary_generate: True

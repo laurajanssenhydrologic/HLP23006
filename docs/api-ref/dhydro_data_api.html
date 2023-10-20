@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Dhydro Data &#8212; D-HydroLogic</title>
+    <title>FM Data &#8212; D-HydroLogic</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'api-ref/dhydro_data_api';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fixed Weirs Helper Functions" href="fixed_weirs_helpers_api.html" />
+    <link rel="next" title="HYDAMO Data Model" href="hydamo_data_api.html" />
     <link rel="prev" title="ROI Toolbox" href="data_structures_api.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -100,8 +100,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -148,14 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    D-HydroLogic
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
@@ -187,12 +179,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="data_structures_api.html">ROI Toolbox</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Dhydro Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">FM Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hydamo_data_api.html">HYDAMO Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roi_data_api.html">FM Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rrdata_api.html">RR Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -253,101 +245,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2Fapi-ref/dhydro_data_api.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/api-ref/dhydro_data_api.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
   title="Fullscreen mode"
@@ -392,7 +289,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Dhydro Data</h1>
+    <h1>FM Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -402,7 +299,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Dhydro Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">FM Data</a></li>
 </ul>
             </nav>
         </div>
@@ -414,13 +311,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="dhydro-data">
-<h1>Dhydro Data<a class="headerlink" href="#dhydro-data" title="Permalink to this heading">#</a></h1>
+  <section id="fm-data">
+<h1>FM Data<a class="headerlink" href="#fm-data" title="Permalink to this heading">#</a></h1>
 <section id="id1">
-<h2>Dhydro Data<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2>FM Data<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dhydro_data.</span></span><span class="sig-name descname"><span class="pre">DHydroData</span></span><a class="reference internal" href="../_modules/dhydro_data.html#DHydroData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dhydro_data.DHydroData" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fm_data.</span></span><span class="sig-name descname"><span class="pre">FMData</span></span><a class="reference internal" href="../_modules/fm_data.html#FMData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fm_data.FMData" title="Permalink to this definition">#</a></dt>
 <dd><p>Helper class to convert raw data to:
 1. load raw data into a DHydamoDataModel
 2. load a DHydamo geopackage into a DHydamoDataModel
@@ -428,8 +325,8 @@ document.write(`
 4. save a DHYdamoDataModel into a D-HYDRO model
 5. Clip structures by (buffered) branches extent</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.ddm">
-<span class="sig-name descname"><span class="pre">ddm</span></span><a class="headerlink" href="#dhydro_data.DHydroData.ddm" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData.dm">
+<span class="sig-name descname"><span class="pre">dm</span></span><a class="headerlink" href="#fm_data.FMData.dm" title="Permalink to this definition">#</a></dt>
 <dd><p>instance of DHydamoDataModel that is used by this clas</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -439,9 +336,9 @@ document.write(`
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.features">
-<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#dhydro_data.DHydroData.features" title="Permalink to this definition">#</a></dt>
-<dd><p>list of features that are present in self.ddm and do not have None values</p>
+<dt class="sig sig-object py" id="fm_data.FMData.features">
+<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#fm_data.FMData.features" title="Permalink to this definition">#</a></dt>
+<dd><p>list of features that are present in self.dm and do not have None values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -450,8 +347,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.clip_structures_by_branches">
-<span class="sig-name descname"><span class="pre">clip_structures_by_branches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_overlap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/dhydro_data.html#DHydroData.clip_structures_by_branches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dhydro_data.DHydroData.clip_structures_by_branches" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData.clip_structures_by_branches">
+<span class="sig-name descname"><span class="pre">clip_structures_by_branches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_overlap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/fm_data.html#FMData.clip_structures_by_branches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fm_data.FMData.clip_structures_by_branches" title="Permalink to this definition">#</a></dt>
 <dd><p>Class method to drop structures from the data that are farther from a branch than “buffer”
 Structures that are linestring are required to overlap with a branch for at least “min_overlap”</p>
 <dl class="field-list simple">
@@ -469,8 +366,8 @@ this drop, for example, culverts that are perpendicular to a branch</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.hydamo_from_gpkg">
-<span class="sig-name descname"><span class="pre">hydamo_from_gpkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gpkg_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_snap_dist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/dhydro_data.html#DHydroData.hydamo_from_gpkg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dhydro_data.DHydroData.hydamo_from_gpkg" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData.hydamo_from_gpkg">
+<span class="sig-name descname"><span class="pre">hydamo_from_gpkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gpkg_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_snap_dist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/fm_data.html#FMData.hydamo_from_gpkg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fm_data.FMData.hydamo_from_gpkg" title="Permalink to this definition">#</a></dt>
 <dd><p>Class method to load data from geopackage and validate data against DHydamoDataModel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -484,8 +381,8 @@ this drop, for example, culverts that are perpendicular to a branch</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.hydamo_from_raw_data">
-<span class="sig-name descname"><span class="pre">hydamo_from_raw_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_snap_dist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/dhydro_data.html#DHydroData.hydamo_from_raw_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dhydro_data.DHydroData.hydamo_from_raw_data" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData.hydamo_from_raw_data">
+<span class="sig-name descname"><span class="pre">hydamo_from_raw_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_snap_dist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/fm_data.html#FMData.hydamo_from_raw_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fm_data.FMData.hydamo_from_raw_data" title="Permalink to this definition">#</a></dt>
 <dd><p>Class method to load raw_data into a DHydamoDataModel. This datamodel validates data against expected values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -501,8 +398,8 @@ this drop, for example, culverts that are perpendicular to a branch</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.hydamo_to_gpkg">
-<span class="sig-name descname"><span class="pre">hydamo_to_gpkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_gpkg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/dhydro_data.html#DHydroData.hydamo_to_gpkg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dhydro_data.DHydroData.hydamo_to_gpkg" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData.hydamo_to_gpkg">
+<span class="sig-name descname"><span class="pre">hydamo_to_gpkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_gpkg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/fm_data.html#FMData.hydamo_to_gpkg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fm_data.FMData.hydamo_to_gpkg" title="Permalink to this definition">#</a></dt>
 <dd><p>Class method that saves DHydamoDataModel to geopackage</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -515,8 +412,8 @@ this drop, for example, culverts that are perpendicular to a branch</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dhydro_data.DHydroData.to_dhydro">
-<span class="sig-name descname"><span class="pre">to_dhydro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'defaults'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dhydro_data.html#DHydroData.to_dhydro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dhydro_data.DHydroData.to_dhydro" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="fm_data.FMData.to_dhydro">
+<span class="sig-name descname"><span class="pre">to_dhydro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'defaults'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fm_data.html#FMData.to_dhydro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fm_data.FMData.to_dhydro" title="Permalink to this definition">#</a></dt>
 <dd><p>Class method that converts a DHydamoDataModel to a D-HYDRO Model and saves unless write=False</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -577,11 +474,11 @@ this drop, for example, culverts that are perpendicular to a branch</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="fixed_weirs_helpers_api.html"
+       href="hydamo_data_api.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fixed Weirs Helper Functions</p>
+        <p class="prev-next-title">HYDAMO Data Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -603,7 +500,7 @@ this drop, for example, culverts that are perpendicular to a branch</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Dhydro Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">FM Data</a></li>
 </ul>
   </nav></div>
 

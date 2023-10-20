@@ -26,11 +26,11 @@ parts:
     - file: api-ref/data_structures_api
       sections:
         - file: api-ref/dhydro_data_api      
-        - file: api-ref/fixed_weirs_helpers_api
         - file: api-ref/hydamo_data_api
         - file: api-ref/hydamo_helpers_api        
         - file: api-ref/roi_data_api        
         - file: api-ref/to_dhydro_helpers_api
+        - file: api-ref/rrdata_api
     
     - file: api-ref/IT-API-doc
       sections:

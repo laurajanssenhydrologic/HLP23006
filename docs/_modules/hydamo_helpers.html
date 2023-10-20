@@ -97,8 +97,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -145,14 +145,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    D-HydroLogic
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/installation_guide.html">Installation Guide</a></li>
@@ -184,12 +176,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API-reference</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/data_structures_api.html">ROI Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">Dhydro Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/fixed_weirs_helpers_api.html">Fixed Weirs Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/dhydro_data_api.html">FM Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_data_api.html">HYDAMO Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/hydamo_helpers_api.html">HYDAMO Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">ROI Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/roi_data_api.html">FM Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api-ref/to_dhydro_helpers_api.html">To Dhydro Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api-ref/rrdata_api.html">RR Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api-ref/IT-API-doc.html">Inundation Toolbox</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -247,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/HydroLogicBV/P1414/issues/new?title=Issue%20on%20page%20%2F_modules/hydamo_helpers.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -364,16 +309,16 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">affinity</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">MultiPoint</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry.base</span> <span class="kn">import</span> <span class="n">BaseGeometry</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">MultiPoint</span><span class="p">,</span> <span class="n">Point</span>
 
+<span class="kn">from</span> <span class="nn">data_structures.config_templates</span> <span class="kn">import</span> <span class="n">FMGisFile</span>
 <span class="kn">from</span> <span class="nn">data_structures.hydamo_globals</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BRANCH_FRICTION_FUNCTION</span><span class="p">,</span>
     <span class="n">MANAGEMENT_DEVICE_TYPES</span><span class="p">,</span>
     <span class="n">ROUGHNESS_MAPPING_LIST</span><span class="p">,</span>
     <span class="n">WEIR_MAPPING</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">ROIDataModel</span> <span class="k">as</span> <span class="n">Datamodel</span>
+<span class="kn">from</span> <span class="nn">data_structures.roi_data_model</span> <span class="kn">import</span> <span class="n">FMDataModel</span> <span class="k">as</span> <span class="n">Datamodel</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Mean of empty slice&quot;</span><span class="p">)</span>
 
@@ -419,7 +364,7 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">gdf</span>
 
 
@@ -551,7 +496,7 @@ document.write(`
                             <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">coords</span><span class="p">)]</span>
                         <span class="p">)</span>
                 <span class="n">gdf</span> <span class="o">=</span> <span class="n">out_gdf</span>
-    <span class="k">return</span> <span class="n">gdf</span>
+    <span class="k">return</span> <span class="n">gdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">map_columns</span><span class="p">(</span>
@@ -600,9 +545,15 @@ document.write(`
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">index_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">_key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
             <span class="c1"># if data is not in shapefile, fill with default values</span>
-            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">_key</span><span class="p">)</span>
-                <span class="n">_index_mapping</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;globalid&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">defaults</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                    <span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">_key</span><span class="p">)</span>
+                    <span class="n">_index_mapping</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">_index_mapping</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -639,11 +590,11 @@ document.write(`
                 <span class="k">elif</span> <span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;geometry&quot;</span><span class="p">:</span>
                     <span class="k">continue</span>
 
-                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;globalid&quot;</span><span class="p">:</span>
-                    <span class="k">continue</span>
+                <span class="c1"># elif key == &quot;globalid&quot;:</span>
+                <span class="c1">#     continue</span>
 
                 <span class="k">elif</span> <span class="p">(</span><span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;int64&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;float64&quot;</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">_key</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">defaults</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
                         <span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_gdf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
                             <span class="n">to_replace</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
                             <span class="n">value</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">_key</span><span class="p">),</span>
@@ -693,7 +644,6 @@ document.write(`
 
     <span class="c1"># ensure no incorrect geometries exist and set a globalid</span>
     <span class="n">_gdf</span> <span class="o">=</span> <span class="n">fix_geometry</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span>
-    <span class="n">_gdf</span><span class="p">[</span><span class="s2">&quot;globalid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_gdf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
 
     <span class="c1"># fill potential empty columns</span>
     <span class="n">_gdf</span><span class="p">,</span> <span class="n">index_mapping</span> <span class="o">=</span> <span class="n">fill_empty_columns</span><span class="p">(</span>
@@ -701,6 +651,7 @@ document.write(`
         <span class="n">gdf</span><span class="o">=</span><span class="n">_gdf</span><span class="p">,</span>
         <span class="n">index_mapping</span><span class="o">=</span><span class="n">index_mapping</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">_gdf</span><span class="p">[</span><span class="s2">&quot;globalid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_gdf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;code&quot;</span> <span class="ow">in</span> <span class="n">_gdf</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">code_pad</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">_gdf</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_pad</span> <span class="o">+</span> <span class="n">_gdf</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -712,6 +663,17 @@ document.write(`
 
     <span class="c1"># return only columns that are in that dict</span>
     <span class="k">return</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">index_mapping</span>
+
+
+<span class="k">def</span> <span class="nf">merge_multiple_to_dm</span><span class="p">(</span>
+    <span class="n">dm</span><span class="p">:</span> <span class="n">Datamodel</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">gdfs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Datamodel</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">List</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gdfs</span><span class="p">,</span> <span class="n">List</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;inputs should be lists&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">gdf</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="p">):</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dm</span>
 
 
 <span class="k">def</span> <span class="nf">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">Datamodel</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Datamodel</span><span class="p">:</span>
@@ -745,7 +707,7 @@ document.write(`
     <span class="k">return</span> <span class="n">dm</span>
 
 
-<div class="viewcode-block" id="convert_to_dhydamo_data"><a class="viewcode-back" href="../api-ref/hydamo_helpers_api.html#hydamo_helpers.convert_to_dhydamo_data">[docs]</a><span class="k">def</span> <span class="nf">convert_to_dhydamo_data</span><span class="p">(</span><span class="n">ddm</span><span class="p">:</span> <span class="n">Datamodel</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Datamodel</span><span class="p">:</span>
+<div class="viewcode-block" id="convert_to_dhydamo_data"><a class="viewcode-back" href="../api-ref/hydamo_helpers_api.html#hydamo_helpers.convert_to_dhydamo_data">[docs]</a><span class="k">def</span> <span class="nf">convert_to_dhydamo_data</span><span class="p">(</span><span class="n">dm</span><span class="p">:</span> <span class="n">Datamodel</span><span class="p">,</span> <span class="n">defaults</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Datamodel</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function creates a full DHYDAMO DataModel, based on an empty DataModel and a defaults and config file. It creates the</span>
 <span class="sd">    DataModel by adding elements in the following order.</span>
@@ -758,7 +720,7 @@ document.write(`
 <span class="sd">    - sluices and weirs</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">      ddm (Datamodel): empty DataModel, to be filled</span>
+<span class="sd">      dm (Datamodel): empty DataModel, to be filled</span>
 <span class="sd">      defaults (str): The path to the default file (should be in ./dataset_configs/)</span>
 <span class="sd">      config (str): The path to the config file (should be in ./dataset_configs/).</span>
 <span class="sd">    Returns:</span>
@@ -905,8 +867,15 @@ document.write(`
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">]:</span>
         <span class="c1"># Load shapefile with profile points &amp; group them by metingprof attribute</span>
         <span class="c1"># profile_points = gpd.read_file(profile_points_path)</span>
-        <span class="n">grouped_points</span> <span class="o">=</span> <span class="n">profile_points_gdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;profiel nummer&quot;</span><span class="p">)</span>
 
+        <span class="n">profile_points_gdf</span><span class="p">[</span><span class="s2">&quot;ruwheidhoog&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_column_is_numerical</span><span class="p">(</span>
+            <span class="n">profile_points_gdf</span><span class="p">[</span><span class="s2">&quot;ruwheidhoog&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">profile_points_gdf</span><span class="p">[</span><span class="s2">&quot;ruwheidlaag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_column_is_numerical</span><span class="p">(</span>
+            <span class="n">profile_points_gdf</span><span class="p">[</span><span class="s2">&quot;ruwheidlaag&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">grouped_points</span> <span class="o">=</span> <span class="n">profile_points_gdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;profiel nummer&quot;</span><span class="p">)</span>
         <span class="c1"># initialize empty lists</span>
         <span class="n">profile_groups</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">profile_lines</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2072,6 +2041,9 @@ document.write(`
                     <span class="n">shape</span> <span class="o">=</span> <span class="mi">3</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">shape</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Assumed vormopening = 3 for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ix</span><span class="p">))</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="mi">3</span>
 
             <span class="n">opening_gid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
             <span class="n">opening</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -2293,163 +2265,131 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">in_branches_gdf</span>
 
+    <span class="c1">## START OF FUNCTION</span>
     <span class="c1"># ddm = DHydamoDataModel()</span>
     <span class="n">defaults</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">defaults</span><span class="p">)</span>
-    <span class="n">data_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">),</span> <span class="s2">&quot;RawData&quot;</span><span class="p">)</span>
+    <span class="n">data_config</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dataset_configs.&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">)</span>
     <span class="n">code_padding</span> <span class="o">=</span> <span class="n">config</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span>  <span class="c1"># add prefix of length 4 to all objects with codes</span>
     <span class="k">if</span> <span class="n">code_padding</span> <span class="o">==</span> <span class="s2">&quot;rijn&quot;</span><span class="p">:</span>
         <span class="n">code_padding</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;branches_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">branches_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="c1">## Branches</span>
-        <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span>
-            <span class="n">data_config</span><span class="o">.</span><span class="n">branches_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;waterloop&quot;</span><span class="p">,</span> <span class="n">geom_type</span><span class="o">=</span><span class="s2">&quot;LineString&quot;</span><span class="p">,</span> <span class="n">has_z_coord</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">gdf_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data_config</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">FMGisFile</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;column_selection&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">column_selection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">column_selection</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">s_key</span><span class="p">,</span> <span class="n">s_value</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">column_selection</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+                <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gdf</span><span class="p">[</span><span class="n">s_key</span><span class="p">]</span> <span class="o">==</span> <span class="n">s_value</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s2">&quot;not implemented&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">defaults</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no defaults found for key: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
+            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span><span class="p">,</span>
+            <span class="n">defaults</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+            <span class="n">gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span>
+            <span class="n">index_mapping</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">column_mapping</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;branch_selection&quot;</span><span class="p">):</span>
-            <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">data_config</span><span class="o">.</span><span class="n">branch_selection</span><span class="p">[</span><span class="s2">&quot;column&quot;</span><span class="p">],</span>
-                <span class="n">data_config</span><span class="o">.</span><span class="n">branch_selection</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span>
-            <span class="p">)</span>
-            <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">branches_gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">branches_gdf</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">gdf_dict</span><span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span>
 
-        <span class="n">branches_gdf</span><span class="p">,</span> <span class="n">index_mapping</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;wl_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Branches</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">branch_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">gdf</span> <span class="ow">in</span> <span class="n">gdf_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;brug&quot;</span><span class="p">:</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">create_bridge_data</span><span class="p">(</span><span class="n">bridge_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">))</span>
 
-        <span class="n">branches_out_gdf</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">branches_gdf</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches_gdf</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-            <span class="n">type_ruwheid</span> <span class="o">=</span> <span class="n">check_roughness</span><span class="p">(</span><span class="n">branch</span><span class="p">)</span>
-            <span class="n">branches_out_gdf</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ix</span><span class="p">,</span> <span class="s2">&quot;typeruwheid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_ruwheid</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;duiker&quot;</span><span class="p">:</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">create_culvert_data</span><span class="p">(</span><span class="n">culvert_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">))</span>
 
-        <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">branches_out_gdf</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;gemaal&quot;</span><span class="p">:</span>
+            <span class="n">gemaal</span><span class="p">,</span> <span class="n">pomp</span><span class="p">,</span> <span class="n">sturing</span> <span class="o">=</span> <span class="n">create_pump_data</span><span class="p">(</span><span class="n">pump_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gemaal&quot;</span><span class="p">,</span> <span class="s2">&quot;pomp&quot;</span><span class="p">,</span> <span class="s2">&quot;sturing&quot;</span><span class="p">]</span>
+            <span class="n">gdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">gemaal</span><span class="p">,</span> <span class="n">pomp</span><span class="p">,</span> <span class="n">sturing</span><span class="p">]</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_multiple_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="o">=</span><span class="n">gdfs</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;norm_profile_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-            <span class="n">data_config</span><span class="o">.</span><span class="n">norm_profile_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">):</span>
-            <span class="n">np_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">norm_profile_path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;gemeten_profiel&quot;</span><span class="p">:</span>
+            <span class="p">(</span>
+                <span class="n">profielgroep</span><span class="p">,</span>
+                <span class="n">profiellijn</span><span class="p">,</span>
+                <span class="n">profielpunt</span><span class="p">,</span>
+                <span class="n">ruwheidsprofiel</span><span class="p">,</span>
+            <span class="p">)</span> <span class="o">=</span> <span class="n">create_measured_profile_data</span><span class="p">(</span><span class="n">profile_points_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;profielgroep&quot;</span><span class="p">,</span> <span class="s2">&quot;profiellijn&quot;</span><span class="p">,</span> <span class="s2">&quot;profielpunt&quot;</span><span class="p">,</span> <span class="s2">&quot;ruwheidsprofiel&quot;</span><span class="p">]</span>
+            <span class="n">gdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">profielgroep</span><span class="p">,</span> <span class="n">profiellijn</span><span class="p">,</span> <span class="n">profielpunt</span><span class="p">,</span> <span class="n">ruwheidsprofiel</span><span class="p">]</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_multiple_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="o">=</span><span class="n">gdfs</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;np_selection&quot;</span><span class="p">):</span>
-                <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">data_config</span><span class="o">.</span><span class="n">np_selection</span><span class="p">[</span><span class="s2">&quot;column&quot;</span><span class="p">],</span>
-                    <span class="n">data_config</span><span class="o">.</span><span class="n">np_selection</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span>
-                <span class="p">)</span>
-                <span class="n">np_gdf</span> <span class="o">=</span> <span class="n">np_gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np_gdf</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span><span class="p">,</span> <span class="p">:]</span>
-
-            <span class="n">np_gdf</span><span class="p">,</span> <span class="n">index_mapping</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-                <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;np_&quot;</span><span class="p">,</span>
-                <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Branches</span><span class="p">,</span>
-                <span class="n">gdf</span><span class="o">=</span><span class="n">np_gdf</span><span class="p">,</span>
-                <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">np_index_mapping</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;normprofiel&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="s2">&quot;peil&quot;</span><span class="p">):</span>
+                <span class="n">default</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">peil</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">default</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">np_gdf</span> <span class="o">=</span> <span class="n">fill_branch_norm_parm_profiles_data</span><span class="p">(</span>
-                <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Peil</span><span class="p">,</span> <span class="n">in_branches_gdf</span><span class="o">=</span><span class="n">np_gdf</span><span class="p">,</span> <span class="n">data_config</span><span class="o">=</span><span class="n">data_config</span>
+                <span class="n">defaults</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="n">in_branches_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">data_config</span><span class="o">=</span><span class="n">data_config</span>
             <span class="p">)</span>
-
             <span class="p">(</span>
                 <span class="n">profielgroep</span><span class="p">,</span>
                 <span class="n">profiellijn</span><span class="p">,</span>
                 <span class="n">profielpunt</span><span class="p">,</span>
                 <span class="n">ruwheidsprofiel</span><span class="p">,</span>
             <span class="p">)</span> <span class="o">=</span> <span class="n">create_mp_from_np</span><span class="p">(</span><span class="n">branches_gdf</span><span class="o">=</span><span class="n">np_gdf</span><span class="p">)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;profielgroep&quot;</span><span class="p">,</span> <span class="s2">&quot;profiellijn&quot;</span><span class="p">,</span> <span class="s2">&quot;profielpunt&quot;</span><span class="p">,</span> <span class="s2">&quot;ruwheidsprofiel&quot;</span><span class="p">]</span>
+            <span class="n">gdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">profielgroep</span><span class="p">,</span> <span class="n">profiellijn</span><span class="p">,</span> <span class="n">profielpunt</span><span class="p">,</span> <span class="n">ruwheidsprofiel</span><span class="p">]</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_multiple_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="o">=</span><span class="n">gdfs</span><span class="p">)</span>
 
-            <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;profielgroep&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">profielgroep</span><span class="p">)</span>
-            <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;profiellijn&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">profiellijn</span><span class="p">)</span>
-            <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;profielpunt&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">profielpunt</span><span class="p">)</span>
-            <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;ruwheidsprofiel&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">ruwheidsprofiel</span><span class="p">)</span>
-        <span class="c1"># else:</span>
-        <span class="c1"># (</span>
-        <span class="c1">#     ddm.waterloop,</span>
-        <span class="c1">#     _,</span>
-        <span class="c1">#     _,</span>
-        <span class="c1"># ) = create_norm_parm_profiles_v2(branches_gdf=branches_gdf)</span>
-        <span class="k">if</span> <span class="s2">&quot;bodembreedte&quot;</span> <span class="ow">in</span> <span class="n">branches_gdf</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="p">(</span>
-                <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span>
-                <span class="n">ddm</span><span class="o">.</span><span class="n">hydroobject_normgp</span><span class="p">,</span>
-                <span class="n">ddm</span><span class="o">.</span><span class="n">normgeparamprofielwaarde</span><span class="p">,</span>
-            <span class="p">)</span> <span class="o">=</span> <span class="n">create_norm_parm_profiles_v2</span><span class="p">(</span><span class="n">branches_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;peilgebieden&quot;</span><span class="p">:</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;stuw&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;sluis&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;waterloop&quot;</span> <span class="ow">in</span> <span class="n">gdf_dict</span><span class="p">:</span>
+                <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">gdf_dict</span><span class="p">[</span><span class="s2">&quot;waterloop&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">branches_gdf</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">stuw</span><span class="p">,</span> <span class="n">kunstwerkopening</span><span class="p">,</span> <span class="n">regelmiddel</span> <span class="o">=</span> <span class="n">create_weir_data</span><span class="p">(</span>
+                <span class="n">branches_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">,</span> <span class="n">weir_gdf</span><span class="o">=</span><span class="n">gdf</span>
+            <span class="p">)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stuw&quot;</span><span class="p">,</span> <span class="s2">&quot;kunstwerkopening&quot;</span><span class="p">,</span> <span class="s2">&quot;regelmiddel&quot;</span><span class="p">]</span>
+            <span class="n">gdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">stuw</span><span class="p">,</span> <span class="n">kunstwerkopening</span><span class="p">,</span> <span class="n">regelmiddel</span><span class="p">]</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_multiple_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="o">=</span><span class="n">gdfs</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;waterloop&quot;</span><span class="p">:</span>
+            <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">gdf</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="n">type_ruwheid</span> <span class="o">=</span> <span class="n">check_roughness</span><span class="p">(</span><span class="n">branch</span><span class="p">)</span>
+                <span class="n">branches_gdf</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ix</span><span class="p">,</span> <span class="s2">&quot;typeruwheid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_ruwheid</span>
+
+            <span class="k">if</span> <span class="s2">&quot;peilgebieden&quot;</span> <span class="ow">in</span> <span class="n">gdf_dict</span><span class="p">:</span>
+                <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">add_peil_to_branch</span><span class="p">(</span>
+                    <span class="n">branches_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">,</span> <span class="n">peil_gdf</span><span class="o">=</span><span class="n">gdf_dict</span><span class="p">[</span><span class="s2">&quot;peilgebieden&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;Peil&quot;</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">Peil</span><span class="p">,</span> <span class="s2">&quot;default_peil&quot;</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">Peil</span><span class="o">.</span><span class="n">default_peil</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="p">):</span>
+                <span class="n">branches_gdf</span> <span class="o">=</span> <span class="n">add_default_peil_to_branch</span><span class="p">(</span>
+                    <span class="n">branches_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">,</span> <span class="n">default_peil</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">Peil</span><span class="o">.</span><span class="n">default_peil</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;bodembreedte&quot;</span> <span class="ow">in</span> <span class="n">branches_gdf</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="p">(</span>
+                    <span class="n">waterloop</span><span class="p">,</span>
+                    <span class="n">hydroobject_normgp</span><span class="p">,</span>
+                    <span class="n">normgeparamprofielwaarde</span><span class="p">,</span>
+                <span class="p">)</span> <span class="o">=</span> <span class="n">create_norm_parm_profiles_v2</span><span class="p">(</span><span class="n">branches_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">)</span>
+                <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;waterloop&quot;</span><span class="p">,</span> <span class="s2">&quot;hydroobject_normgp&quot;</span><span class="p">,</span> <span class="s2">&quot;normgeparamprofielwaarde&quot;</span><span class="p">]</span>
+                <span class="n">gdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">hydroobject_normgp</span><span class="p">,</span> <span class="n">normgeparamprofielwaarde</span><span class="p">]</span>
+                <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_multiple_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="o">=</span><span class="n">gdfs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span> <span class="o">=</span> <span class="n">branches_gdf</span>
-
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;bridges_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">bridges_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="c1">## Bridges</span>
-        <span class="n">bridges_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;br_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Bridges</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">bridges_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;brug&quot;</span><span class="p">),</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">bridge_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">ddm</span><span class="o">.</span><span class="n">brug</span> <span class="o">=</span> <span class="n">create_bridge_data</span><span class="p">(</span><span class="n">bridge_gdf</span><span class="o">=</span><span class="n">bridges_gdf</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;culvert_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">culvert_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="c1">## Culverts</span>
-        <span class="n">culvert_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;cu_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Culverts</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">culvert_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;duiker&quot;</span><span class="p">),</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">culvert_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">ddm</span><span class="o">.</span><span class="n">duiker</span> <span class="o">=</span> <span class="n">create_culvert_data</span><span class="p">(</span><span class="n">culvert_gdf</span><span class="o">=</span><span class="n">culvert_gdf</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;measured_profile_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-        <span class="n">data_config</span><span class="o">.</span><span class="n">measured_profile_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-    <span class="p">):</span>
-        <span class="n">measure_profile_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span>
-            <span class="n">data_config</span><span class="o">.</span><span class="n">measured_profile_path</span><span class="p">,</span>
-            <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;metingprofielpunt&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">measure_profile_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;mp_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">MeasuredProfiles</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">measure_profile_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">measured_profile_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="p">(</span>
-            <span class="n">profielgroep</span><span class="p">,</span>
-            <span class="n">profiellijn</span><span class="p">,</span>
-            <span class="n">profielpunt</span><span class="p">,</span>
-            <span class="n">ruwheidsprofiel</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="n">create_measured_profile_data</span><span class="p">(</span><span class="n">profile_points_gdf</span><span class="o">=</span><span class="n">measure_profile_gdf</span><span class="p">)</span>
-
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;profielgroep&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">profielgroep</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;profiellijn&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">profiellijn</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;profielpunt&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">profielpunt</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;ruwheidsprofiel&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">ruwheidsprofiel</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;peil_gebieden_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">peil_gebieden_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="n">peil_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">peil_gebieden_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;peilgebieden&quot;</span><span class="p">)</span>
-        <span class="n">peil_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;pl_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Peil</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">peil_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">peil_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="c1"># replace waterlopen with extra info</span>
-        <span class="n">ddm</span><span class="o">.</span><span class="n">peilgebieden</span> <span class="o">=</span> <span class="n">peil_gdf</span>
-        <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span> <span class="o">=</span> <span class="n">add_peil_to_branch</span><span class="p">(</span><span class="n">branches_gdf</span><span class="o">=</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">peil_gdf</span><span class="o">=</span><span class="n">peil_gdf</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;Peil&quot;</span><span class="p">)</span>
-        <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">Peil</span><span class="p">,</span> <span class="s2">&quot;default_peil&quot;</span><span class="p">)</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">Peil</span><span class="o">.</span><span class="n">default_peil</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="p">):</span>
-        <span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span> <span class="o">=</span> <span class="n">add_default_peil_to_branch</span><span class="p">(</span>
-            <span class="n">branches_gdf</span><span class="o">=</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">default_peil</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">Peil</span><span class="o">.</span><span class="n">default_peil</span>
-        <span class="p">)</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;pump_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">pump_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="c1">## Pumps</span>
-        <span class="n">pump_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">pump_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;gemaal&quot;</span><span class="p">)</span>
-        <span class="n">pump_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;pu_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Pumps</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">pump_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">pump_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="n">ddm</span><span class="o">.</span><span class="n">gemaal</span><span class="p">,</span> <span class="n">ddm</span><span class="o">.</span><span class="n">pomp</span><span class="p">,</span> <span class="n">ddm</span><span class="o">.</span><span class="n">sturing</span> <span class="o">=</span> <span class="n">create_pump_data</span><span class="p">(</span><span class="n">pump_gdf</span><span class="o">=</span><span class="n">pump_gdf</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Key: </span><span class="si">{}</span><span class="s2"> not implemented&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;river_profile_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">river_profile_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;river_roughness_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
@@ -2460,50 +2400,16 @@ document.write(`
             <span class="n">rough_df</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">riv_prof_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">river_profile_path</span><span class="p">)</span>
-        <span class="p">(</span>
-            <span class="n">ddm</span><span class="o">.</span><span class="n">rivier_profielen</span><span class="p">,</span>
-            <span class="n">ddm</span><span class="o">.</span><span class="n">rivier_profielen_data</span><span class="p">,</span>
-            <span class="n">ddm</span><span class="o">.</span><span class="n">rivier_ruwheid</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="n">create_river_profiles</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">rivier_profielen</span><span class="p">,</span> <span class="n">rivier_profielen_data</span><span class="p">,</span> <span class="n">rivier_ruwheid</span><span class="p">,)</span> <span class="o">=</span> <span class="n">create_river_profiles</span><span class="p">(</span>
             <span class="n">branches_gdf</span><span class="o">=</span><span class="n">branches_gdf</span><span class="p">,</span>
             <span class="n">riv_prof_df</span><span class="o">=</span><span class="n">riv_prof_df</span><span class="p">,</span>
             <span class="n">code_padding</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;wl_&quot;</span><span class="p">,</span>
             <span class="n">rough_df</span><span class="o">=</span><span class="n">rough_df</span><span class="p">,</span>
         <span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;sluice_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">sluice_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="n">sluice_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">sluice_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;sluis&quot;</span><span class="p">)</span>
-        <span class="n">sluice_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;sl_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Weirs</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">sluice_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">sluice_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="n">stuw</span><span class="p">,</span> <span class="n">kunstwerkopening</span><span class="p">,</span> <span class="n">regelmiddel</span> <span class="o">=</span> <span class="n">create_weir_data</span><span class="p">(</span>
-            <span class="n">branches_gdf</span><span class="o">=</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">weir_gdf</span><span class="o">=</span><span class="n">sluice_gdf</span>
-        <span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;stuw&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">stuw</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;kunstwerkopening&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">kunstwerkopening</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;regelmiddel&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">regelmiddel</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;weir_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">weir_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="c1">## Weirs</span>
-        <span class="n">weir_gdf</span> <span class="o">=</span> <span class="n">load_geo_file</span><span class="p">(</span><span class="n">data_config</span><span class="o">.</span><span class="n">weir_path</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;stuw&quot;</span><span class="p">)</span>
-        <span class="n">weir_gdf</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">map_columns</span><span class="p">(</span>
-            <span class="n">code_pad</span><span class="o">=</span><span class="n">code_padding</span> <span class="o">+</span> <span class="s2">&quot;we_&quot;</span><span class="p">,</span>
-            <span class="n">defaults</span><span class="o">=</span><span class="n">defaults</span><span class="o">.</span><span class="n">Weirs</span><span class="p">,</span>
-            <span class="n">gdf</span><span class="o">=</span><span class="n">weir_gdf</span><span class="p">,</span>
-            <span class="n">index_mapping</span><span class="o">=</span><span class="n">data_config</span><span class="o">.</span><span class="n">weir_index_mapping</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">stuw</span><span class="p">,</span> <span class="n">kunstwerkopening</span><span class="p">,</span> <span class="n">regelmiddel</span> <span class="o">=</span> <span class="n">create_weir_data</span><span class="p">(</span>
-            <span class="n">branches_gdf</span><span class="o">=</span><span class="n">ddm</span><span class="o">.</span><span class="n">waterloop</span><span class="p">,</span> <span class="n">weir_gdf</span><span class="o">=</span><span class="n">weir_gdf</span>
-        <span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;stuw&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">stuw</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;kunstwerkopening&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">kunstwerkopening</span><span class="p">)</span>
-        <span class="n">ddm</span> <span class="o">=</span> <span class="n">merge_to_ddm</span><span class="p">(</span><span class="n">ddm</span><span class="o">=</span><span class="n">ddm</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;regelmiddel&quot;</span><span class="p">,</span> <span class="n">feature_gdf</span><span class="o">=</span><span class="n">regelmiddel</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">ddm</span></div>
+        <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rivier_profielen&quot;</span><span class="p">,</span> <span class="s2">&quot;rivier_profielen_data&quot;</span><span class="p">,</span> <span class="s2">&quot;rivier_ruwheid&quot;</span><span class="p">]</span>
+        <span class="n">gdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">rivier_profielen</span><span class="p">,</span> <span class="n">rivier_profielen_data</span><span class="p">,</span> <span class="n">rivier_ruwheid</span><span class="p">]</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">merge_multiple_to_dm</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="n">dm</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">gdfs</span><span class="o">=</span><span class="n">gdfs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dm</span></div>
 </pre></div>
 
                 </article>

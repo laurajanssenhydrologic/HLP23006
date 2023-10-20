@@ -10,7 +10,7 @@ TIMESTEP = 60
 class Models:
     class FM:
         one_d_bool = True
-        two_d_bool = False
+        two_d_bool = True
         start_time = START_TIME
         stop_time = STOP_TIME
 
@@ -21,9 +21,10 @@ class Models:
 
         class two_d:
             coupling_type = "2Dto1D"
-            dx = 500
-            dy = 500
+            dx = 100
+            dy = 100
             elevation_raster_path = r"D:\Work\Project\P1414\GIS\AHN\AHN_merged.TIF"
+            extent_path = r"D:\Work\Project\HL-23006\GIS\Legger\Peilgebieden_dissolved_v2.shp"
             initial_peil_raster_path = r"D:\Work\Project\P1414\GIS\peilen\peilen_jp_25m_full.tif"
             two_d_buffer = 100
 
@@ -97,7 +98,7 @@ gemalen = FMGisFile(
 keringen = FMGisFile(
     column_mapping=dict([("code", "OBJECTID"), ("geometry", "geometry"), ("globalid", None)]),
     name="keringen",
-    path=P_FOLDER + r"\Keringen_met_hoogte\hdsr.shp",
+    path=P_FOLDER + r"\Keringen_met_hoogte\hdsr_simplified.shp",
 )
 
 normprofielen = FMGisFile(

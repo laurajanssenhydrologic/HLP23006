@@ -2041,6 +2041,16 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
             gdfs = [profielgroep, profiellijn, profielpunt, ruwheidsprofiel]
             dm = merge_multiple_to_dm(dm=dm, features=features, gdfs=gdfs)
 
+        elif (key == "keringen") or (key == "overiglijnelement"):
+            dx = data_config.Models.FM.two_d.dx
+            dy = data_config.Models.FM.two_d.dy
+            min_length = np.mean([dx, dy])
+
+            if min_length is not None:
+                gdf = gdf.drop(gdf[gdf.geometry.length < min_length].index)
+
+            dm = merge_to_dm(dm=dm, feature=key, feature_gdf=gdf)
+
         elif key == "peilgebieden":
             dm = merge_to_dm(dm=dm, feature=key, feature_gdf=gdf)
 

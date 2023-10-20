@@ -9,12 +9,12 @@ from data_structures.dhydro_data import DHydroData
 
 folder = r"D:\Work\Project\HL-23006"
 ae_path = folder + r"\GIS\koppeling ms sobek\Afwateringseenheden_REFERENTIE_2021-11-12.geojson"
-gpkg_file = folder + r"\GIS\HYDAMO\HDSR_v4.gpkg"
+gpkg_file = folder + r"\GIS\HYDAMO\HDSR_v5.gpkg"
 gpkg_file_2 = folder + r"\GIS\HYDAMO\HDSR_missing_values.gpkg"
 knopen_path = folder + r"\GIS\Riool\comb.shp"
 lat_path = folder + r"\GIS\koppeling ms sobek\LATERAL.DAT"
 net_path = folder + r"\GIS\koppeling ms sobek\network.nc"
-output_folder = folder + r"\Models\HDSR\V04d"
+output_folder = folder + r"\Models\HDSR\V07b"
 forcing_path = output_folder + r"\dflowfm\boundaryconditions.bc"
 
 config = r"hdsr_wsa_config_v2"

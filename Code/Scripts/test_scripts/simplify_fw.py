@@ -3,12 +3,8 @@ import numpy as np
 import pandas as pd
 from shapely.geometry import LineString, MultiLineString
 
-gdf_1 = gpd.read_file(
-    r"D:\Work\Project\P1414\GIS\HYDAMO\Combined_test_v20_WBD.gpkg", layer="keringen"
-)
-gdf_2 = gpd.read_file(
-    r"D:\Work\Project\P1414\GIS\HYDAMO\Combined_test_v20_WBD.gpkg", layer="overiglijnelement"
-)
+input_path = r"D:\Work\Project\HL-23006\GIS\Keringen_met_hoogte\hdsr.shp"
+output_path = r"D:\Work\Project\HL-23006\GIS\Keringen_met_hoogte\hdsr_simplified.shp"
 
 
 def split_line_by_point(line, max_length: float = 500, max_seg_length: float = 25):
@@ -32,8 +28,7 @@ def split_line_by_point(line, max_length: float = 500, max_seg_length: float = 2
     return mls
 
 
-gdf = gpd.GeoDataFrame(pd.concat([gdf_1, gdf_2], ignore_index=True), crs=gdf_1.crs)
-gdf.to_file(r"D:\Work\Project\P1414\GIS\Keringen\fw_orig.shp")
+gdf = gpd.read_file(input_path)
 print(gdf.head())
 
 
@@ -55,5 +50,4 @@ result["geometry"] = result["geometry"].simplify(tolerance=1)
 
 result["length"] = result["geometry"].length
 
-gdf.to_file(r"D:\Work\Project\P1414\GIS\Keringen\fw_test_1.shp")
-result.to_file(r"D:\Work\Project\P1414\GIS\Keringen\fw_test_2.shp")
+result.to_file(output_path)
