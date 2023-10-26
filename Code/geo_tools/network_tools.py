@@ -18,9 +18,11 @@ def check_for_nan(value):
     return nan
 
 
-def combine_straight_branches(G: nx.Graph):
+def combine_straight_branches(G: nx.Graph, recursion: int = 0):
     # Select all nodes with only 2 neighbors
-    nodes_to_remove = [n for n in G.nodes if len(list(G.neighbors(n))) == 2]
+    # nodes_to_remove = [n for n in G.nodes if len(list(G.neighbors(n))) == 2]
+    nodes_to_remove = [n for n in G.nodes if G.degree(n) == 2]
+    mls = 0
 
     for node in nodes_to_remove:
         edges = G.edges(node, data=True)
@@ -62,7 +64,10 @@ def combine_straight_branches(G: nx.Graph):
                 elif isinstance(value, LineString):
                     line = linemerge([data1[key], data2[key]])
                     if isinstance(line, MultiLineString):
+                        # print("MLS encountered")
+                        # print(type(value))
                         succesfull = False
+                        mls += 1
                         break
                     else:
                         data_new[key] = line
@@ -84,6 +89,15 @@ def combine_straight_branches(G: nx.Graph):
         if succesfull:
             G.add_edge(*G.neighbors(node), **data_new)
             G.remove_node(node)
+    # new_nodes_to_remove = [n for n in G.nodes if G.degree(n) == 2]
+    # n_nodes = len(new_nodes_to_remove)
+    # print(n_nodes - mls)
+    # if (n_nodes - mls) > 0:
+    #     recursion = recursion + 1
+    #     print("Starting iteration: {}".format(recursion))
+    #     print(n_nodes)
+    #     G = combine_straight_branches(G=G, recursion=recursion)
+
     return G
 
 

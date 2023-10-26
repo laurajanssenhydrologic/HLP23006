@@ -1,0 +1,37 @@
+name: inundation_toolbox
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - black
+  - contextily
+  - GDAL
+  - geopandas
+  - jupyter
+  - lxml
+  - matplotlib
+  - momepy
+  - netCDF4
+  - numpy
+  - pandas==1.5.2
+  - pandera==0.13.4
+  - pandera-geopandas
+  - pandera-io
+  - pydantic==1.8.2
+  - rasterio
+  - rasterstats
+  - scipy
+  - shapely==1.8.5
+  - pip
+  - pip:
+    - imod==0.11.4
+    - ipympl
+    - isort
+    - matplotlib_scalebar
+    - meshkernel>=2.0
+    - tqdm
+    - ugrid
+    - xugrid==0.1.9
+    - xarray==2022.12.0
+  

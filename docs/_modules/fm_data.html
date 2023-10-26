@@ -299,7 +299,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for fm_data</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 
@@ -569,6 +569,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">fm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmmodel</span>
 
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving FM model to disk&quot;</span><span class="p">)</span>
         <span class="n">fm_path</span> <span class="o">=</span> <span class="n">output_path</span> <span class="o">/</span> <span class="n">FM_FOLDER</span>
         <span class="n">fm</span><span class="o">.</span><span class="n">filepath</span> <span class="o">=</span> <span class="n">fm_path</span> <span class="o">/</span> <span class="s2">&quot;test.mdu&quot;</span>
 
@@ -581,20 +582,17 @@ document.write(`
         <span class="n">dimr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">files_to_save</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">cpus</span> <span class="o">=</span> <span class="mi">8</span>
-            <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">cpus</span><span class="p">)</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">files_to_save</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">file_path</span> <span class="o">=</span> <span class="n">fm_path</span> <span class="o">/</span> <span class="s2">&quot;test.bc&quot;</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-                <span class="c1"># file.save(filepath=path)</span>
-                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(),</span> <span class="n">kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;filepath&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">}))</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">fm_path</span> <span class="o">/</span> <span class="n">path</span>
+                <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                    <span class="k">pass</span>
 
-            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-                <span class="n">_</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 
-            <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">fm</span>
 
     <span class="k">def</span> <span class="nf">_set_dm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">:</span> <span class="n">DataModel</span><span class="p">,</span> <span class="n">branch_snap_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

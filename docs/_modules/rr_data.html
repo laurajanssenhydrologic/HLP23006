@@ -466,10 +466,15 @@ document.write(`
             <span class="p">)</span>
             <span class="n">_laterals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_lateral</span><span class="p">)</span>
 
-        <span class="n">extforcefilenew</span> <span class="o">=</span> <span class="n">ExtModel</span><span class="p">(</span><span class="n">lateral</span><span class="o">=</span><span class="n">_laterals</span><span class="p">)</span>
+        <span class="c1"># extforcefilenew = ExtModel(lateral=_laterals)</span>
+        <span class="n">extforcefilenew</span> <span class="o">=</span> <span class="n">ExtModel</span><span class="p">()</span>
+        <span class="n">extforcefilenew</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">validate_assignment</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">extforcefilenew</span><span class="o">.</span><span class="n">lateral</span> <span class="o">=</span> <span class="n">_laterals</span>
         <span class="n">forcingmodel</span> <span class="o">=</span> <span class="n">ForcingModel</span><span class="p">(</span><span class="n">forcing</span><span class="o">=</span><span class="n">_forcings</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_forcings</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">files_to_save</span><span class="p">[</span><span class="s2">&quot;boundaryconditions.bc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">forcingmodel</span><span class="p">)</span>
+        <span class="c1"># forcingmodel = ForcingModel()</span>
+        <span class="c1"># forcingmodel.Config.validate_assignment = False</span>
+        <span class="c1"># forcingmodel.forcing = _forcings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">files_to_save</span><span class="p">[</span><span class="s2">&quot;boundaryconditions.bc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forcingmodel</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">merge_ext_files</span><span class="p">(</span><span class="n">extforcefile</span><span class="o">=</span><span class="n">extforcefilenew</span><span class="p">)</span>
 
@@ -480,13 +485,14 @@ document.write(`
         <span class="n">lat_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">date_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&#39;%Y/%m/</span><span class="si">%d</span><span class="s2">;%H:%M:%S&#39;&quot;</span><span class="p">,</span>
         <span class="n">d_ref</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">total</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14774565</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reading file&quot;</span><span class="p">)</span>
         <span class="c1">## Read as text file and parse headers and data including timestamp</span>
         <span class="n">laterals</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">entries</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">lat_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="mi">14774565</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">):</span>
                 <span class="k">if</span> <span class="s2">&quot;FLBR&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
                     <span class="n">sline</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
                     <span class="n">entry</span> <span class="o">=</span> <span class="p">[</span><span class="n">sline</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
@@ -544,6 +550,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">drr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drrmodel</span>
 
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving RR model to disk&quot;</span><span class="p">)</span>
         <span class="n">rr_writer</span> <span class="o">=</span> <span class="n">DRRWriter</span><span class="p">(</span><span class="n">rrmodel</span><span class="o">=</span><span class="n">drr</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RR&quot;</span><span class="p">,</span> <span class="n">wwtp</span><span class="o">=</span><span class="n">wwtp</span><span class="p">)</span>
         <span class="n">rr_writer</span><span class="o">.</span><span class="n">write_all</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">drr</span></div>

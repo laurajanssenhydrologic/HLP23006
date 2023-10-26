@@ -1981,8 +1981,8 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
 
         if hasattr(value, "column_selection") and (value.column_selection is not None):
             if isinstance(value.column_selection, dict):
-                s_key, s_value = next(iter(value.column_selection.items()))
-                gdf = gdf.loc[gdf[s_key] == s_value, :]
+                for s_key, s_value in value.column_selection.items():
+                    gdf = gdf.loc[gdf[s_key].isin(s_value), :]
             else:
                 raise NameError("not implemented")
 
@@ -2054,7 +2054,7 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         elif key == "peilgebieden":
             dm = merge_to_dm(dm=dm, feature=key, feature_gdf=gdf)
 
-        elif (key == "stuw") or (key == "sluis"):
+        elif (key == "stuw") or (key == "sluis") or (key == "afsluitmiddel"):
             if "waterloop" in gdf_dict:
                 branches_gdf = gdf_dict["waterloop"]
             else:
