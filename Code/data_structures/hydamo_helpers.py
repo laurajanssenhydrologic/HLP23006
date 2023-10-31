@@ -1982,7 +1982,10 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         if hasattr(value, "column_selection") and (value.column_selection is not None):
             if isinstance(value.column_selection, dict):
                 for s_key, s_value in value.column_selection.items():
-                    gdf = gdf.loc[gdf[s_key].isin(s_value), :]
+                    if isinstance(s_value, list):
+                        gdf = gdf.loc[gdf[s_key].isin(s_value), :]
+                    else:
+                        gdf = gdf.loc[gdf[s_key] == s_value, :]
             else:
                 raise NameError("not implemented")
 
