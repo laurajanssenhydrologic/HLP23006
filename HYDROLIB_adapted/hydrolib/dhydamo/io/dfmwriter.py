@@ -127,6 +127,7 @@ class DFLowFMModelWriter:
     def bridges_to_dhydro_loop(self):              
 
         for bridge in self.dfmmodel.structures.bridges.itertuples():
+            print(bridge.name)
             struc = Bridge(
                             id      = bridge.id,
                             name    = bridge.name,

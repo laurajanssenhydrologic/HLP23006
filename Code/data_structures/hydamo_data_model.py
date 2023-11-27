@@ -55,6 +55,8 @@ class BrugSchema(GPDBasicShema):
     ruwheid: Series[float] = pa.Field(gt=0)
     typeruwheid: Series[str] = pa.Field(isin=ROUGHNESS_MAPPING_LIST)
     uittreeverlies: Series[float] = pa.Field(ge=0, le=1)
+    doorstroomopening: Series[str] #door Laura
+    shift: Series[float] = pa.Field(le=0) #door Laura, must me <0 NAP
 
 
 class DuikerSchema(GPDBasicShema):

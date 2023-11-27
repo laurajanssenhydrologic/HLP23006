@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import List, Union
 
 import geopandas as gpd
+import pandas as pd
 import numpy as np
 import rasterio
 from geo_tools.roughness_to_mesh import create_roughness_xyz
@@ -90,9 +91,13 @@ def fm_to_dhydro(
         branches_gdf = dm.waterloop
         branch_field_list = []
         for name, branch in branches_gdf.iterrows():
-            if np.isnan(branch["peil"]):
-                continue
+            # if np.isnan(branch["peil"]):
+            #     continue
 
+            if branch["peil"]<-10 or branch["peil"]>10 or np.isnan(branch["peil"]):
+                print('Note: ini peil is not realistic:',branch["peil"])
+                continue #in that case, we skip
+            
             branch_field_list.append(
                 OneDFieldBranch(
                     branchid=branch["code"],
@@ -101,7 +106,8 @@ def fm_to_dhydro(
                         np.around(branch["geometry"].length * 0.1, 3),
                         np.around(branch["geometry"].length * 0.9, 3),
                     ],
-                    values=[np.around(branch["peil"], 3), np.around(branch["peil"], 3)],
+                    #values=[np.around(branch["peil"], 3), np.around(branch["peil"], 3)],
+                    values=[np.around(branch["peil"], 3), np.around(branch["peil"], 3)], 
                 )
             )
 
@@ -219,7 +225,7 @@ def fm_to_dhydro(
         return hydamo
 
     def add_bridges(
-        dm: DataModel, hydamo: HyDAMO, default_height=0, max_snap_dist: float = 5
+        dm: DataModel, hydamo: HyDAMO, max_snap_dist: float = 5
     ) -> HyDAMO:
 
         hydamo.bridges.set_data(dm.brug, index_col="code")
@@ -236,16 +242,21 @@ def fm_to_dhydro(
                 chainage=bridge.branch_offset,
                 frictiontype=bridge.typeruwheid,
                 csdefid=bridge.code,  # TODO Check influence of csdefid
-                shift=default_height,  # TODO Validate the use of offset
+                shift=bridge["shift"],  # TODO Validate the use of offset
                 friction=bridge.ruwheid,
-                inletlosscoeff=bridge.intreeverlies,
-                outletlosscoeff=bridge.uittreeverlies,
+                inletlosscoeff=str(bridge.intreeverlies), #str van gemaakt door Laura
+                outletlosscoeff=str(bridge.uittreeverlies), #str van gemaakt Laura
+                crosssection=eval( #door Laura
+                    bridge.doorstroomopening #door Laura
+                ),  # door Laura
+                bedfrictiontype=bridge.typeruwheid, #door Laura
+                bedfriction=bridge.ruwheid, #door Laura
+                allowedflowdir="both" #door Laura
             )
-
         return hydamo
 
     def add_culverts(dm: DataModel, hydamo: HyDAMO, max_snap_dist: float = 5) -> HyDAMO:
-        hydamo.culverts.set_data(dm.duiker)
+        hydamo.culverts.set_data(dm.duiker,check_geotype=False)
 
         for name, culvert in dm.duiker.iterrows():
             if isinstance(culvert["geometry"], LineString):
@@ -276,7 +287,8 @@ def fm_to_dhydro(
             )
 
         return hydamo
-
+    
+    
     def add_dambreaks(dm: DataModel, fm=FMModel, max_dist=100, z_default=0) -> FMModel:
         db_gdf = dm.doorbraak
         fw_gdf = dm.keringen
@@ -1010,16 +1022,24 @@ def fm_to_dhydro(
         return set_options(obj_loc=fmmodel, options=options)
 
     def simple_fm_model(
-        dtmax: int = 60,
+        dtuser: int = 60,
         start_time: int = 20160601,
         stop_time: int = 2 * 86400,
         statsinterval: int = 3600,
+        #write_map: bool = True,
+        #write_his: bool = True,
+        map_interval: int = 3600,
+        his_interval: int = 3600,
     ) -> FMModel:
         fm = FMModel()
         fm.time.refdate = start_time
         fm.time.tstop = stop_time
-        fm.time.dtmax = dtmax
+        fm.time.dtuser = dtuser
         fm.output.statsinterval = [statsinterval]
+        #fm.output.WriteMapFile = write_map
+        #fm.output.WriteHisFile = write_his
+        fm.output.mapinterval = [map_interval]
+        fm.output.hisinterval = [his_interval]
         return fm
 
     # load configuration file
@@ -1029,7 +1049,8 @@ def fm_to_dhydro(
     if hasattr(model_config, "FM"):
         # initialize a simple FM model
         fm = simple_fm_model(
-            start_time=model_config.FM.start_time, stop_time=model_config.FM.stop_time
+            start_time=model_config.FM.start_time, stop_time=model_config.FM.stop_time, dtuser=model_config.FM.dtuser,
+            map_interval=model_config.FM.map_interval, his_interval=model_config.FM.his_interval
         )
         fm.output.outputdir = OUTPUTDIR
 
@@ -1077,6 +1098,8 @@ def fm_to_dhydro(
 
             for structure, function in struct_functions.items():
                 if structure in features:
+                    if structure =='duiker' and 'afsluitmiddel' in features: # we add the afsluitmiddel as culvert
+                        dm.duiker=pd.concat([dm.duiker,dm.afsluitmiddel],ignore_index=True)
                     print("\nworking on {}\n".format(structure))
                     hydamo = function(
                         dm=dm,

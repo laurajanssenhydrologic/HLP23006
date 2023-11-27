@@ -105,6 +105,123 @@ def check_roughness(structure: gpd.GeoSeries, rougness_map: List = ROUGHNESS_MAP
         type_ruwheid = rougness_map[int(type_ruwheid) - 1]
     return type_ruwheid
 
+def create_streefpeil(gdf_peil: gpd.GeoDataFrame, gdf_gemaal: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    """
+    Function that overlays the peilgebieden shape with the gemalen shape  to determine the streefpeil for each pump
+    """
+    gdf_peil_crs=gdf_peil.to_crs(gdf_gemaal.crs)
+    overlay_peil=gpd.sjoin(gdf_gemaal,gdf_peil_crs,how='inner',predicate='intersects')
+    gdf_gemaal_peil=overlay_peil[['code','globalid','geometry','maximalecapaciteit','doelvariabele','peil_marge','ZOMERPEIL','WINTERPEIL','BOVENPEIL','ONDERPEIL','VASTPEIL','streefwaarde']]
+
+    for ix, pump in gdf_gemaal_peil.iterrows():
+        #als er een vastpeil is, dan nemen we die
+        #anders nemen we het bovenpeil
+        #en anders nemen we zomerpeil voor nu
+        if np.isnan(pump["VASTPEIL"]) and ~np.isnan(pump["BOVENPEIL"]):
+            gdf_gemaal_peil.loc[ix,'streefwaarde']=pump["BOVENPEIL"] 
+        elif np.isnan(pump["VASTPEIL"]) and np.isnan(pump["BOVENPEIL"]):
+            gdf_gemaal_peil.loc[ix,'streefwaarde']=pump["ZOMERPEIL"]
+        else: 
+            gdf_gemaal_peil.loc[ix,'streefwaarde']=pump["VASTPEIL"]
+
+    #keep rows with lowest streefwaarde
+    gdf_gemaal_peil=gdf_gemaal_peil.sort_values(by='streefwaarde')      
+    gdf_gemaal_v2=gdf_gemaal_peil.drop_duplicates(subset='globalid',keep='first')
+    gdf_gemaal_v2=gdf_gemaal_v2.sort_index()
+    return gdf_gemaal_v2
+
+def create_brugprofiel(
+        branches_gdf: gpd.GeoDataFrame,
+        dist_tol: float = 0.25,
+        min_water_width: float = 0.1,
+        roughness_mapping: List = ROUGHNESS_MAPPING_LIST,
+    ) -> Tuple[gpd.GeoDataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame]:
+        def rectangular_point_profile(
+            branch: LineString,
+            profiel_nummer: str,
+            params: dict,
+            def_height: float = 2,
+            rect_offset: float = 0.1,
+            interp_range: float = 0.1,
+            thalweg_offset: float = None,
+        ) -> List[Point]:
+
+            bwidth = params["bodembreedte"]
+            rotated_line = affinity.rotate(
+                branch.geometry, 90, origin=branch.geometry.interpolate(0.5, normalized=True)
+            )
+
+            p1 = rotated_line.interpolate(0.5 - interp_range / 2, normalized=True)
+            p2 = rotated_line.interpolate(0.5 + interp_range / 2, normalized=True)
+
+            if p2.x > p1.x:
+                dx_o = p2.x - p1.x
+                dy_o = p2.y - p1.y
+            else:
+                dx_o = p1.x - p2.x
+                dy_o = p1.y - p2.y
+
+            if dx_o != 0:
+                s = dy_o / dx_o
+                # given a line slope dy/dx (i.e. a/b), pythagoras a**2 + b**2 = c**2, and a desired length c
+                # we can determine that b_n = c_n/sqrt(1+(a/b)**2) and a_n = b_n * (a/b)
+                dx_1 = bwidth / np.sqrt(1 + s**2)
+                dy_1 = dx_1 * s
+
+                dx_2 = (bwidth + rect_offset) / np.sqrt(1 + s**2)
+                dy_2 = dx_2 * s
+            else:
+                dx_1 = dx_2 = 0
+                dy_1 = dy_2 = bwidth
+
+            centroid = branch.geometry.interpolate(0.5, normalized=True)
+            # centroid = rotated_line.centroid
+            c_x, c_y = centroid.x, centroid.y
+
+            if (thalweg_offset is not None) and (thalweg_offset > 0) and (thalweg_offset < 1):
+                offset_l = thalweg_offset
+                offset_r = 1 - thalweg_offset
+            else:
+                offset_l = offset_r = 0.5
+
+            list_of_points = [
+                Point(c_x - offset_l * dx_2, c_y - offset_l * dy_2),
+                Point(c_x - offset_l * dx_1, c_y - offset_l * dy_1),
+                Point(c_x + offset_r * dx_1, c_y + offset_r * dy_1),
+                Point(c_x + offset_r * dx_2, c_y + offset_r * dy_2),
+            ]
+
+            bheight = np.nanmean(
+                [params["bodemhoogte benedenstrooms"], params["bodemhoogte bovenstrooms"]]
+            )
+            if ("hoogte insteek linkerzijde" in params) and (
+                "hoogte insteek rechterzijde" in params
+            ):
+                prof_height = [
+                    params["hoogte insteek linkerzijde"],
+                    bheight,
+                    bheight,
+                    params["hoogte insteek rechterzijde"],
+                ]
+            else:
+                prof_height = [def_height, bheight, bheight, def_height]
+
+            p_list = []
+            for ix, point in enumerate(list_of_points):
+                p_dict = dict(
+                    [
+                        ("codevolgnummer", ix + 1),
+                        ("geometry", Point(point.x, point.y, prof_height[ix])),
+                        ("profiel nummer", profiel_nummer),
+                        ("type meting", 2),
+                        ("typeruwheid", branch["typeruwheid"]),
+                        ("ruwheidhoog", branch["ruwheidhoog"]),
+                        ("ruwheidlaag", branch["ruwheidlaag"]),
+                    ]
+                )
+                p_list.append(p_dict)
+
+            return p_list
 
 def load_geo_file(
     file_path: Any, geom_type: str = None, has_z_coord: bool = None, layer: str = None
@@ -453,12 +570,22 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         branches_gdf: gpd.GeoDataFrame, peil_gdf: gpd.GeoDataFrame
     ) -> gpd.GeoDataFrame:
         in_cols = branches_gdf.columns.tolist()
-        peil_gdf[["boven peil", "onder peil", "vast peil"]] = peil_gdf[
-            ["boven peil", "onder peil", "vast peil"]
-        ].replace(0, np.nan)
-        peil_gdf["peil"] = peil_gdf[["boven peil", "onder peil", "vast peil"]].mean(
-            axis=1, skipna=True
-        )
+        peil_gdf[["boven peil", "onder peil", "vast peil"]] = peil_gdf[["boven peil", "onder peil", "vast peil"]].replace(0, np.nan) #replace 0 by nan value
+        peil_gdf["peil"] = peil_gdf[["boven peil", "onder peil", "vast peil"]].mean(axis=1, skipna=True) #peil is the average of bovenpeil, onderpeil and vastpeil
+
+        #add ini peilen
+        # peil_gdf["inipeil_zomer"]= None
+        # peil_gdf["inipeil_winter"]= None      
+        # for ix, waterloop in peil_gdf.iterrows():
+        #     if ~ np.isnan(waterloop["vast peil"]):
+        #         peil_gdf.loc[ix, "inipeil_zomer"] = waterloop["vast peil"]
+        #         peil_gdf.loc[ix, "inipeil_winter"]= waterloop["vast peil"]
+        #     elif ~ np.isnan(waterloop["onder peil"]) and ~ np.isnan(waterloop["boven peil"]):
+        #         peil_gdf.loc[ix, "inipeil_zomer"] = waterloop["boven peil"]
+        #         peil_gdf.loc[ix, "inipeil_winter"]= waterloop["onder peil"]
+        #     else:
+        #         print('Area has no peil: vast peil',waterloop["vast peil"],' onderpeil',waterloop["onder peil"]," bovenpeil",waterloop["boven peil"])
+        #         #raise ValueError("Branches without peil")          
 
         old_geom = copy(branches_gdf["geometry"])
         branches_gdf["geometry"] = branches_gdf["geometry"].interpolate(0.5, normalized=True)
@@ -476,18 +603,34 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
 
         out_branches["geometry"] = old_geom
         in_cols.append("peil")
+        #in_cols.append("inipeil_zomer")
+        #in_cols.append("inipeil_winter")
         return out_branches[in_cols]
 
     def create_bridge_data(bridge_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
         """ """
         _bridge_gdf = copy(bridge_gdf)
         for ix, bridge in bridge_gdf.iterrows():
-            if np.isnan(bridge["lengte"]):
+            if np.isnan(bridge["breedte_overspanning"]) or np.isnan(bridge["hoogte_onderkant"]):
                 _bridge_gdf.drop(index=ix, inplace=True)
                 continue
             # turn numerical roughnes types to strings
             _bridge_gdf.loc[ix, "typeruwheid"] = check_roughness(bridge)
+            _bridge_gdf["doorstroomopening"] = None #van Laura
+
+        for ix, bridge in _bridge_gdf.iterrows():
+        #calculate the height of the cross section flow area
+            hoogte_doorstroomopening = bridge.hoogte_onderkant - bridge["shift"] #both hoogte_onderkant and shift are wrt NAP
+            crosssection = {
+                    "shape": "rectangle",
+                    "height": hoogte_doorstroomopening,
+                    "width": bridge.breedte_overspanning,
+                    "closed": 'no',
+                }
+            _bridge_gdf.loc[ix, "doorstroomopening"] = str(crosssection)
+
         return _bridge_gdf
+    
 
     def create_culvert_data(culvert_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
         """ """
@@ -503,6 +646,7 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         culvert_gdf["hoogteopening"] = culvert_gdf["hoogteopening"].replace(0, np.nan)
 
         _culvert_gdf = copy(culvert_gdf)
+
 
         for ix, culvert in culvert_gdf.iterrows():
             if (not check_is_not_na_number(culvert["lengte"])) or (culvert["lengte"] == 1):
@@ -1425,7 +1569,7 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
             normgeparamprofielwaarde,
         )
 
-    def create_pump_data(pump_gdf: gpd.GeoDataFrame) -> List[gpd.GeoDataFrame]:
+    def create_pump_data(pump_gdf: gpd.GeoDataFrame,peil_gdf: gpd.GeoDataFrame) -> List[gpd.GeoDataFrame]:
         pump_station_list = []
         pump_list = []
         management_list = []
@@ -1433,6 +1577,9 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         pump_gdf["maximalecapaciteit"] = check_column_is_numerical(
             gdf=pump_gdf["maximalecapaciteit"]
         )
+
+        pump_gdf=create_streefpeil(peil_gdf,pump_gdf)
+
 
         for ix, pump in pump_gdf.iterrows():
             pump_station = dict(
@@ -1455,7 +1602,7 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
                 ]
             )
             pump_list.append(_pump)
-
+     
             management = dict(
                 [
                     ("bovengrens", pump["streefwaarde"] + 0.5 * pump["peil_marge"]),
@@ -1948,7 +2095,7 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
                             ("watervlak_geometry", watervlak_geometry),
                         ]
                     )
-                    # results.append(pool.apply_async(find_branch_width, kwds=kwds))
+                    # results.append(pool.apply_async(find_brapeilgebiedennch_width, kwds=kwds))
                     results.append(find_branch_width(**kwds))
 
             for res in results:
@@ -2006,11 +2153,12 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         if key == "brug":
             dm = merge_to_dm(dm=dm, feature=key, feature_gdf=create_bridge_data(bridge_gdf=gdf))
 
-        elif key == "duiker":
+        elif key == "duiker" or (key == "afsluitmiddel"): #afsluitmiddel als duiker
             dm = merge_to_dm(dm=dm, feature=key, feature_gdf=create_culvert_data(culvert_gdf=gdf))
 
         elif key == "gemaal":
-            gemaal, pomp, sturing = create_pump_data(pump_gdf=gdf)
+            peil_gdf=gpd.read_file(data_config.peilgebieden.path)
+            gemaal, pomp, sturing = create_pump_data(pump_gdf=gdf,peil_gdf=peil_gdf)
             features = ["gemaal", "pomp", "sturing"]
             gdfs = [gemaal, pomp, sturing]
             dm = merge_multiple_to_dm(dm=dm, features=features, gdfs=gdfs)
@@ -2057,7 +2205,7 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         elif key == "peilgebieden":
             dm = merge_to_dm(dm=dm, feature=key, feature_gdf=gdf)
 
-        elif (key == "stuw") or (key == "sluis") or (key == "afsluitmiddel"):
+        elif (key == "stuw") or (key == "sluis"): # or (key == "afsluitmiddel"):
             if "waterloop" in gdf_dict:
                 branches_gdf = gdf_dict["waterloop"]
             else:
@@ -2122,3 +2270,4 @@ def convert_to_dhydamo_data(dm: Datamodel, defaults: str, config: str) -> Datamo
         gdfs = [rivier_profielen, rivier_profielen_data, rivier_ruwheid]
         dm = merge_multiple_to_dm(dm=dm, features=features, gdfs=gdfs)
     return dm
+

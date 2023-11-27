@@ -5,7 +5,13 @@ from typing import Dict, List
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+from shapely.geometry import Point
+import rasterio
+from rasterio.features import geometry_mask
+
 from geo_tools.clip_tools import _clip_structures_by_branches
+from hydrolib.core.io.bc.models import ForcingBase, QuantityUnitPair, ForcingModel
+from hydrolib.core.io.ext.models import Boundary
 from geo_tools.merge_networks import merge_networks
 from hydrolib.core.io.dimr.models import DIMR, FMComponent
 from hydrolib.core.io.ext.models import ExtModel
@@ -123,6 +129,34 @@ class FMData:
         dm = create_fixed_weir_data(config=config, defaults=defaults, dm=dm, min_length=min_length)
         self._set_dm(dm=dm)
 
+    def fill_afsluitmiddeldata(self, path_afsluitmiddel:str, path_duiker:str,path_afsluitmiddel_out:str) -> None:
+        afsluitmiddel_gdf=gpd.read_file(path_afsluitmiddel)
+        duiker_gdf=gpd.read_file(path_duiker)
+        afsluitmiddel_gdf=afsluitmiddel_gdf[['CODE','STATUSOBJE','SOORTAFSLU','SOORTREGEL','DUIKERSIFO','GLOBALID','geometry']]
+        afsluitmiddel_gdf=afsluitmiddel_gdf.assign(LENGTE=None,VORMKOKER=None,HOOGTEOPEN=None,BREEDTEOPE=None,HOOGTEBOKB=None,HOOGTEBO_1=None)
+        nodata=0
+        for ix, afsluiter in afsluitmiddel_gdf.iterrows(): #merge does not work correctly, use loop instead
+            if afsluiter.DUIKERSIFO==None:
+                nodata+=1
+                print('geen duiker gevonden voor afsluitmiddel',afsluiter.CODE)
+                continue
+            index_duiker = duiker_gdf.index[duiker_gdf['GLOBALID']==afsluiter.DUIKERSIFO].to_list()
+            if not index_duiker:        #if list is empty, skip
+                #print('geen duiker gevonden voor afsluitmiddel',afsluiter.CODE)
+                nodata+=1
+                continue
+            else:
+                afsluitmiddel_gdf.loc[ix,'LENGTE']=float(duiker_gdf.loc[index_duiker,'LENGTE'])
+                afsluitmiddel_gdf.loc[ix,'VORMKOKER']=float(duiker_gdf.loc[index_duiker,'VORMKOKER'])
+                afsluitmiddel_gdf.loc[ix,'HOOGTEOPEN']=float(duiker_gdf.loc[index_duiker,'HOOGTEOPEN'])
+                afsluitmiddel_gdf.loc[ix,'BREEDTEOPE']=float(duiker_gdf.loc[index_duiker,'BREEDTEOPE'])
+                afsluitmiddel_gdf.loc[ix,'HOOGTEBOKB']=float(duiker_gdf.loc[index_duiker,'HOOGTEBINN'])
+                afsluitmiddel_gdf.loc[ix,'HOOGTEBO_1']=float(duiker_gdf.loc[index_duiker,'HOOGTEBI_1'])
+        print('Alle afsluitmiddelen zijn aangevuld')
+        print('Voor ',nodata,' afsluitmiddelen is geen data gevonden.')
+        afsluitmiddel_gdf.to_file(path_afsluitmiddel_out,driver='ESRI Shapefile')
+
+    
     def hydamo_from_raw_data(
         self,
         config: str,
@@ -346,3 +380,38 @@ class FMData:
                         new_gdf = check_and_fix_duplicate_code(new_gdf)
 
                         setattr(self.dm, key, new_gdf)
+
+    def boundary_from_txt(self,bound_text_path: str,waterlevel_path:str):
+        "add boundary nodes based on list with boundary names in text file"
+        with open(bound_text_path,'r') as file:
+            bound_list = file.readlines()
+
+        bound_list_sanitized = list( dict.fromkeys(bound_list) )#remove duplicates by first converting to a dictiionary and then back to a list
+        forcings_fm=[]
+        boundaries_fm=[]      
+        
+        with rasterio.open(waterlevel_path) as src:
+            for _boundary in bound_list_sanitized:
+                name_bound = _boundary.rstrip('\n')
+                coordinates = name_bound.split('_')
+                bound_coord = Point(float(coordinates[0]),float(coordinates[1]))
+                
+                
+                point_mask = geometry_mask([bound_coord], out_shape=src.shape, transform=src.transform, invert=True)
+                values_at_point = src.read(1, masked=True)[point_mask]
+                waterlevel_value=float(values_at_point.data[0])
+
+                #print(waterlevel_value)
+                if np.isnan(waterlevel_value) or waterlevel_value<-9:
+                    if name_bound.startswith('134'):
+                        waterlevel_value=0.58
+                        print('Note: boundary waterlevel value at', name_bound,' is not realistic, set to:',waterlevel_value)
+                    else:
+                        waterlevel_value = -0.4
+                        print('Note: boundary waterlevel value at', name_bound,' is not realistic, set to:',waterlevel_value)
+
+                _forcing=ForcingBase(name=name_bound,function="constant",quantityunitpair=[QuantityUnitPair(quantity="waterlevelbnd", unit="m")],datablock=[[waterlevel_value]])
+                forcings_fm.append(_forcing)
+                _boundary =Boundary(quantity="waterlevelbnd",nodeid=name_bound,forcingfile= ForcingModel(forcing=_forcing))
+                boundaries_fm.append(_boundary)
+        return forcings_fm, boundaries_fm                 
