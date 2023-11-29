@@ -6,10 +6,14 @@ import numpy as np
 ## Bridges
 class brug:
     intreeverlies = 0.5
-    lengte = np.nan
     ruwheid = 75.0
     typeruwheid = "StricklerKn"
     uittreeverlies = 0.7
+    doorstroomopening = "" #door Laura
+    lengte = 1 #door Laura
+    breedte_overspanning = np.nan #door Laura
+    hoogte_onderkant =  np.nan #door Laura
+    shift = -10 #door Laura
 
 
 ## Culverts
@@ -55,6 +59,8 @@ class keringen:
 class peil:
     boven_peil = np.nan
     onder_peil = np.nan
+    zomer_peil = np.nan
+    winter_peil = np.nan
     vast_peil = np.nan
 
 
@@ -62,10 +68,10 @@ class peil:
 class stuw:
     afvoercoefficient_stuw = 1
     afvoercoefficient_opening = 0.85
-    hoogstedoorstroombreedte = np.nan
-    hoogstedoorstroomhoogte = np.nan
-    laagstedoorstroombreedte = np.nan  # 0.1
-    laagstedoorstroomhoogte = np.nan  # 0
+    hoogstedoorstroombreedte = 0.5
+    hoogstedoorstroomhoogte = 1
+    laagstedoorstroombreedte = 0.1  # np.nan
+    laagstedoorstroomhoogte = 0 #np.nan
     overlaatonderlaat = "Overlaat"
     soortregelbaarheid = 1
     soortstuw = 11
@@ -73,6 +79,32 @@ class stuw:
 
 
 sluis = copy(stuw)
+
+# class afsluitmiddel:
+#     afvoercoefficient_stuw = 1
+#     afvoercoefficient_opening = 0.85
+#     hoogstedoorstroombreedte = 100
+#     hoogstedoorstroomhoogte = 100
+#     laagstedoorstroombreedte = 100  # np.nan
+#     laagstedoorstroomhoogte = 100 #np.nan
+#     overlaatonderlaat = "Overlaat"
+#     soortregelbaarheid = 1
+#     soortstuw = 11
+#     vormopening = 3
+
+class afsluitmiddel:
+    breedteopening = np.nan
+    doorstroomopening = ""
+    gesloten = "yes"
+    hoogtebinnenonderkantbene = np.nan  # 0
+    hoogtebinnenonderkantbov = np.nan  # 0
+    hoogteopening = np.nan
+    intreeverlies = 0.6
+    lengte = 0.5
+    ruwheid = 75.0
+    typeruwheid = "StricklerKn"
+    uittreeverlies = 0.8
+    vormkoker = 1
 
 ## Branches
 class waterloop:

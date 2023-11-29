@@ -102,6 +102,7 @@ class FMDataModel(BaseModel):
 
     brug: Optional[DataFrame[BrugSchema]]
     duiker: Optional[DataFrame[DuikerSchema]]
+    afsluitmiddel: Optional[DataFrame[DuikerSchema]]
     doorbraak: Optional[Any]
     gemaal: Optional[DataFrame[GemaalSchema]]
     hydroobject_normgp: Optional[DataFrame[Hydroobject_normgpSchema]]

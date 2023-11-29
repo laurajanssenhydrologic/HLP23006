@@ -447,7 +447,9 @@ class DRRWriter:
                             + dct["id"]
                             + "' ss 0 qc 0 "
                             + dct["qc"]
-                            + " 0 qo 1 0 ms '"
+                            + " 0 qo " #door Laura
+                            + dct["qo"]
+                            + " ms '" #door Laura
                             + dct["ms"]
                             + "' is "
                             + dct["is"]
@@ -484,7 +486,9 @@ class DRRWriter:
 
             filepath = os.path.join(self.output_dir, "WWTP.3B")
             with open(filepath, "w") as f:
-                f.write("WWTP id 'WWTP' tb 0  wwtp\n")
+                #f.write("WWTP id 'WWTP' tb 0  wwtp\n") 
+                for _,dct in self.rrmodel.paved.wwtp.items(): #aangepast door Laura
+                    f.write("WWTP id '"+dct["wwtp_name"]+"' tb 0  wwtp\n")
 
             filepath = os.path.join(self.output_dir, "WWTP.tbl")
             with open(filepath, "w") as f:
