@@ -4,7 +4,7 @@ BRANCH_FRICTION_FUNCTION = {
     "Waterlevel": "waterLevel",
 }
 HYDAMO_SHAPE_NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 98, 99]
-HYDAMO_WEIR_TYPES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 98, 99]
+HYDAMO_WEIR_TYPES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26,97, 98, 99]
 MANAGEMENT_DEVICE_TYPES = {
     "niet regelbaar (vast)": 1,
     "regelbaar, niet automatisch": 2,
@@ -45,6 +45,7 @@ WEIR_MAPPING = {
     "brievenbusstuw": 24,
     "knijpstuw": 25,
     "conserveringstuw": 26,
+    "overig": 97,
     "overig": 98,
     "onbekend": 99,
 }

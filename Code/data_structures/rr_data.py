@@ -9,9 +9,9 @@ from typing import List, Tuple
 import geopandas as gpd
 import numpy as np
 import xarray as xr
-from hydrolib.core.io.bc.models import ForcingModel, QuantityUnitPair, TimeSeries
+from hydrolib.core.io.bc.models import ForcingBase, ForcingModel, QuantityUnitPair, TimeSeries
 from hydrolib.core.io.dimr.models import RRComponent
-from hydrolib.core.io.ext.models import ExtModel, Lateral
+from hydrolib.core.io.ext.models import ExtModel, Lateral, Boundary
 from hydrolib.dhydamo.core.drr import DRRModel
 from hydrolib.dhydamo.io.drrwriter import DRRWriter
 from scipy.spatial import KDTree
@@ -52,9 +52,15 @@ class RRData:
         wl_len = len(wl_list)
         wl_kdtree = KDTree(data=wl_point_list)
 
+        knopen_gdf["berging_mm"] = knopen_gdf["berging_mm"].astype(float) #wordt ingelezen als string
+        knopen_gdf["geinst_cap"] = knopen_gdf["geinst_cap"].astype(float) #wordt ingelezen als string
+        knopen_gdf["verhard_m2"] = knopen_gdf["verhard_m2"].astype(float) #wordt ingelezen als string
+
         knopen_gdf["berging_mm"] = knopen_gdf["berging_mm"].fillna(value=0)
         knopen_gdf["geinst_cap"] = knopen_gdf["geinst_cap"].fillna(value=0)
         knopen_gdf["verhard_m2"] = knopen_gdf["verhard_m2"].fillna(value=0)
+
+        knopen_gdf["geinst_cap"] = knopen_gdf["geinst_cap"] / 3600 #convert from m3/h to m3/s
 
         lateral_list = []
         for ix, knoop in tqdm(knopen_gdf.iterrows(), total=knopen_gdf.shape[0]):
@@ -110,6 +116,9 @@ class RRData:
         ae_gdf: gpd.GeoDataFrame,
         laterals: List,
         network: xr.Dataset,
+        forcing_path: str,          #location of boundary conditions file
+        boundary_fm: List,          # list with boundary conditions from FM part, to be added to boundary conditions of MFMS
+        forcing_fm: List,           # list with forcings from FM part, to be added to boundary conditions of MFMS
         d_ref: datetime = datetime(2001, 1, 1, 0, 0, 0),
     ) -> Tuple[ExtModel, ForcingModel]:
         print("starting conversion")
@@ -125,10 +134,12 @@ class RRData:
         coords = np.stack([xs, ys], axis=0).T
         kdtree = KDTree(data=coords)
 
-        _laterals = []
-        _forcings = []
+        _laterals = []  
+        # _forcings = []
         # forcing_file = "boundaryconditions.bc"
-        ## Convert to HUDROLIB core
+        _forcings = forcing_fm      # we already have the forcings from the fm part so we start with this list
+
+        ## Convert to HYDROLIB core
         for lateral in tqdm(laterals):
             name = lateral[0]
             name = name.removeprefix("'drain").removesuffix("'")
@@ -139,7 +150,7 @@ class RRData:
             # print([x, y])
             dist, nearest = kdtree.query([x, y], k=1)
             branchix = branches_ix[nearest]
-            branchid = branches_id[branchix]
+            branchid = branches_id[branchix-1] # -1 toegevoegd want we beginnen met tellen bij 1 ipv 0
             offset = offsets[nearest]
             # print(name, branchid, offset)
 
@@ -164,19 +175,22 @@ class RRData:
                 discharge=ForcingModel(forcing=_forcing),
             )
             _laterals.append(_lateral)
-
+        
+        # Create extforcefile / ExtModel from the list of laterals and boundaries
         # extforcefilenew = ExtModel(lateral=_laterals)
-        extforcefilenew = ExtModel()
-        extforcefilenew.Config.validate_assignment = False
-        extforcefilenew.lateral = _laterals
-        forcingmodel = ForcingModel(forcing=_forcings)
-        # forcingmodel = ForcingModel()
-        # forcingmodel.Config.validate_assignment = False
-        # forcingmodel.forcing = _forcings
-        self.fm.files_to_save["boundaryconditions.bc"] = forcingmodel
+        extforcefilenew = ExtModel(boundary=boundary_fm, lateral=_laterals)     	# here we also add the boundaries from the fm model to the extforcefile
+        # extforcefilenew.Config.validate_assignment = False
+        # extforcefilenew.lateral = _laterals
 
-        self.fm.merge_ext_files(extforcefile=extforcefilenew)
+        # Create forcing model fromm the list with forcings
+        # forcingmodel = ForcingModel(forcing=_forcings)
+        forcingmodel = ForcingModel()
+        #forcingmodel.Config.validate_assignment = False
+        forcingmodel.forcing = _forcings
 
+        #self.fm.files_to_save["boundaryconditions.bc"] = forcingmodel  #this does somehow not work because .bc file is overwritten
+        forcingmodel.save(filepath=forcing_path)
+        self.fm.merge_ext_files(extforcefile=extforcefilenew)   # merge with existing extforcefile
         # return extforcefilenew, forcingmodel
 
     def read_MF_MS_output(
@@ -224,6 +238,7 @@ class RRData:
         start_time = model_config.RR.start_time
         stop_time = model_config.RR.stop_time
         timestep = model_config.RR.timestep
+        #wwtp_shp = model_config.RR.wwtp_path
 
         start_time = datetime.strptime(str(start_time), "%Y%m%d")
         stop_time = start_time + timedelta(seconds=stop_time)
@@ -242,7 +257,7 @@ class RRData:
         self.drrmodel.d3b_parameters["UnpavedPercolationLikeSobek213"] = -1
         self.drrmodel.d3b_parameters["VolumeCheckFactorToCF"] = 100000
 
-    def write_drr(self, output_path: Path, wwtp: Tuple = (135888, 458035)):
+    def write_drr(self, output_path: Path, wwtp:Tuple = (135888, 458035)):
         if not hasattr(self, "drrmodel"):
             print("No drrmodel model present")
             return None
