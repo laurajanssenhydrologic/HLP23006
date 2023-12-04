@@ -6,9 +6,9 @@ import shutil
 import geopandas as gpd
 import xarray as xr
 
-sys.path.append("D:\work\P23006\github\HLP23006\\HLP23006\Code")
+sys.path.append("D:\work\P23006\github\HLP23006\Code")
 from data_structures.dhydro_data import DHydroData
-#%%
+
 folder = r"D:\work\P23006"
 gpkg_file_2 = folder + r"\GIS\HYDAMO\HDSR_V8.gpkg"
 output_folder = folder + r"\Models\HDSR\V18"
